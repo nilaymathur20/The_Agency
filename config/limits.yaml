@@ -1,0 +1,10 @@
+limits:
+  max_active_agents: 12
+  max_tool_calls_per_task: 100
+  max_task_runtime_seconds: 3600
+  max_output_bytes: 1048576
+  default_timeout: 60
+  max_timeout: 300
+  max_retries: 3
+  repair_attempts: 3
+  queue_size: 1000

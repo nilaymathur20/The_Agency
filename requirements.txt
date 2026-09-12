@@ -1,0 +1,11 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.7
+pyyaml
+httpx
+pytest
+python-multipart
+websockets
+python-dotenv
+openai>=1.0.0
+openrouter

@@ -1,0 +1,25 @@
+agency:
+  max_active_agents: 12
+  max_tool_calls_per_task: 100
+  max_task_runtime_seconds: 3600
+  max_retries: 3
+  repair_loop_limit: 3
+
+workspace:
+  root: ./workspace/projects
+
+models:
+  provider: mock  # mock | openrouter
+  default_policy: balanced
+
+security:
+  sandbox_required: true
+  network_default: false
+  approval_required_for:
+    - docker_run
+    - network_access
+    - destructive_operation
+    - privileged_command
+
+observability:
+  log_level: INFO

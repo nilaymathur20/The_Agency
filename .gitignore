@@ -1,0 +1,22 @@
+# Agency — do not commit secrets or large generated artifacts
+.env
+.env.local
+workspace/projects/
+workspace/agency.db
+workspace/*.db
+*.db
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+dist/
+out/
+build/
+*.log
+.DS_Store
+.coverage
+htmlcov/
+.mypy_cache/

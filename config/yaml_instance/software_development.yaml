@@ -1,0 +1,30 @@
+name: software_development
+description: ChatDev software development via OpenRouter multi-agent
+chain:
+  - phase: DemandAnalysis
+    instructor: ceo
+    assistant: cpo
+    instruction: Analyze user requirements
+  - phase: LanguageChoose
+    instructor: cto
+    assistant: architect
+    instruction: Choose tech stack
+  - phase: Coding
+    instructor: cto
+    assistant: programmer
+    parallel:
+      - frontend
+      - backend
+      - database
+  - phase: CodeComplete
+    instructor: tech_lead
+    assistant: programmer
+  - phase: CodeReview
+    instructor: programmer
+    assistant: reviewer
+  - phase: Testing
+    instructor: reviewer
+    assistant: tester
+  - phase: Documenting
+    instructor: tester
+    assistant: documentation_writer

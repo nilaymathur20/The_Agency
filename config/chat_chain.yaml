@@ -1,0 +1,108 @@
+# ChatDev-inspired Chat Chain — declarative workflow (like ChatDev's yaml_instance)
+# This is configuration-driven (ChatDev 2.0 principle): change this file to change how agents collaborate.
+# Execution follows chat_chain.py which maps each phase to Instructor → Assistant with dehallucination.
+
+chain:
+  name: software_development
+  description: "ChatDev waterfall chain: Demand → Design → Coding → Review → Testing → Documenting"
+  max_turns_per_phase: 8
+  dehallucination: true   # ChatDev communicative dehallucination
+
+phases:
+  - id: demand_analysis
+    name: DemandAnalysis
+    description: "CEO (Instructor) + CPO (Assistant): analyze user requirements, produce PRD"
+    instructor: ceo
+    assistant: cpo
+    subtasks:
+      - id: requirement_refine
+        instruction: "Refine vague user idea into concrete functional and non-functional requirements"
+        output: ".agency/requirements.md"
+
+  - id: language_choose
+    name: LanguageChoose
+    description: "CTO (Instructor) + Architect (Assistant): choose tech stack and system design"
+    instructor: cto
+    assistant: architect
+    inputs: [demand_analysis]
+    subtasks:
+      - id: tech_stack
+        instruction: "Choose language, framework, database based on requirements"
+        output: ".agency/architecture.md"
+      - id: system_design
+        instruction: "Design modules, APIs, data models"
+
+  - id: coding
+    name: Coding
+    description: "CTO/TechLead Instructor + Programmer Assistant: implement code"
+    instructor: cto
+    assistant: programmer
+    inputs: [language_choose]
+    parallel: true   # ChatDev MacNet style: independent modules in parallel
+    subtasks:
+      - id: frontend
+        role: frontend_developer
+        instruction: "Implement frontend UI components"
+      - id: backend
+        role: backend_developer
+        instruction: "Implement backend API and services"
+      - id: database
+        role: data_engineer
+        instruction: "Design schema and migrations"
+
+  - id: code_complete
+    name: CodeComplete
+    description: "Programmer self-check or TechLead + Programmer: wire and complete"
+    instructor: tech_lead
+    assistant: programmer
+    inputs: [coding]
+    subtasks:
+      - id: integration
+        instruction: "Integrate frontend/backend/database, fix interfaces"
+
+  - id: code_review
+    name: CodeReview
+    description: "Programmer (Instructor) + Reviewer (Assistant): static review (ChatDev Testing phase pt1)"
+    instructor: programmer
+    assistant: reviewer
+    inputs: [code_complete]
+    subtasks:
+      - id: static_review
+        instruction: "Review code for correctness, style, security; suggest fixes"
+
+  - id: testing
+    name: SystemTesting
+    description: "Reviewer Instructor + Tester Assistant: dynamic testing (ChatDev Testing phase pt2)"
+    instructor: reviewer
+    assistant: tester
+    inputs: [code_review]
+    subtasks:
+      - id: dynamic_test
+        instruction: "Run tests, create test cases, fix failures"
+        output: "tests/"
+
+  - id: documenting
+    name: Documenting
+    description: "Tester Instructor + DocWriter Assistant: produce README and docs"
+    instructor: tester
+    assistant: documentation_writer
+    inputs: [testing]
+    subtasks:
+      - id: docs
+        instruction: "Write README, setup guide, API docs"
+
+# Memory policy (ChatDev: short-term per phase, long-term solution transfer)
+memory:
+  short_term: per_phase  # full chat within phase
+  long_term: solution_only  # only subtask solution → next phase
+  instance: .agency/chat_history.json
+
+# Tools per phase (optional override, else use agent's tools)
+tools:
+  demand_analysis: [filesystem]
+  language_choose: [filesystem]
+  coding: [filesystem, terminal, database]
+  code_complete: [filesystem, terminal]
+  code_review: [filesystem, terminal]
+  testing: [filesystem, terminal]
+  documenting: [filesystem]

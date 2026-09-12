@@ -1,0 +1,31 @@
+security:
+  # path policy
+  workspace_boundary: strict
+  reject_absolute_outside: true
+  reject_traversal: true
+  reject_symlink_escape: true
+
+  # command classifier categories
+  categories:
+    read_only: ["ls", "cat", "head", "tail", "find", "grep", "wc", "echo", "pwd", "whoami", "date", "env"]
+    build: ["npm", "yarn", "pip", "poetry", "make", "gradle", "mvn"]
+    test: ["pytest", "jest", "vitest", "npm test", "cargo test", "go test"]
+    install: ["pip install", "npm install", "apt-get", "apk"]
+    network: ["curl", "wget", "git push", "git pull", "npm publish", "docker pull"]
+    destructive: ["rm -rf", "rm -r", "mkfs", "dd", "shutdown", "reboot"]
+    privileged: ["sudo", "su", "chmod 777", "chown"]
+
+  policy:
+    read_only: allow
+    build: allow
+    test: allow
+    install: allow_with_limit
+    network: require_approval
+    destructive: deny
+    privileged: deny
+    docker_run: require_approval
+
+  limits:
+    max_output_bytes: 1048576  # 1MB
+    default_timeout_seconds: 60
+    max_timeout_seconds: 300

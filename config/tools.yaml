@@ -1,0 +1,29 @@
+tools:
+  filesystem:
+    - read_file
+    - write_file
+    - edit_file
+    - list_files
+    - search_files
+    - delete_file
+  terminal:
+    - execute_command
+    - execute_python
+    - run_tests
+  database:
+    - create_database
+    - execute_sql
+    - run_migration
+  docker:
+    - build_docker_image
+    - run_container
+    - stop_container
+    - container_logs
+  git:
+    - git_status
+    - git_diff
+    - git_commit
+    - git_checkout
+    - git_branch
+    - git_log
+    - git_checkpoint

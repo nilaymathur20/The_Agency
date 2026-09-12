@@ -1,0 +1,1612 @@
+# 201 logical agents - generated from AGENT_CATALOG
+# Do not create 201 codebases; registry loads these definitions into one runtime.
+
+agents:
+  - id: frontend_developer-01
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-02
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-03
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-04
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-05
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-06
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-07
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-08
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-09
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-10
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-11
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-12
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-13
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-14
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-15
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-16
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-17
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-18
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-19
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-20
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-21
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: frontend_developer-22
+    role: frontend_developer
+    skills: ['React', 'TypeScript', 'CSS', 'Vite']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: frontend_default
+    preferred_task_types: ['frontend', 'ui']
+    status: dormant
+  - id: backend_developer-01
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-02
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-03
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-04
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-05
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-06
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-07
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-08
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-09
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-10
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-11
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-12
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-13
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-14
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-15
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-16
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-17
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-18
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: backend_developer-19
+    role: backend_developer
+    skills: ['Python', 'FastAPI', 'SQL']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: backend_default
+    preferred_task_types: ['backend', 'api']
+    status: dormant
+  - id: fullstack_developer-01
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-02
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-03
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-04
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-05
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-06
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-07
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-08
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-09
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-10
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-11
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-12
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-13
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-14
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-15
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: fullstack_developer-16
+    role: fullstack_developer
+    skills: ['Python', 'React', 'FastAPI']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['fullstack', 'api', 'frontend']
+    status: dormant
+  - id: mobile_developer-01
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-02
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-03
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-04
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-05
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-06
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-07
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-08
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-09
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-10
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-11
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-12
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-13
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-14
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: mobile_developer-15
+    role: mobile_developer
+    skills: ['React Native', 'Flutter', 'Swift']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['mobile']
+    status: dormant
+  - id: devops_engineer-01
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-02
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-03
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-04
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-05
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-06
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-07
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-08
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-09
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-10
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-11
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-12
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-13
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-14
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-15
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: devops_engineer-16
+    role: devops_engineer
+    skills: ['Docker', 'CI/CD', 'Linux']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'docker.run']
+    model_policy: balanced
+    preferred_task_types: ['devops', 'infra']
+    status: dormant
+  - id: qa_engineer-01
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-02
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-03
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-04
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-05
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-06
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-07
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-08
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-09
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-10
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-11
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-12
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-13
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-14
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: qa_engineer-15
+    role: qa_engineer
+    skills: ['Pytest', 'Playwright', 'Testing']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['qa', 'test']
+    status: dormant
+  - id: data_engineer-01
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-02
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-03
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-04
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-05
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-06
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-07
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-08
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-09
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-10
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-11
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-12
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-13
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: data_engineer-14
+    role: data_engineer
+    skills: ['SQL', 'ETL', 'Python']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test', 'database.write']
+    model_policy: balanced
+    preferred_task_types: ['data', 'database']
+    status: dormant
+  - id: ml_engineer-01
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-02
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-03
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-04
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-05
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-06
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-07
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-08
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-09
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-10
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-11
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-12
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-13
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: ml_engineer-14
+    role: ml_engineer
+    skills: ['Python', 'ML', 'Embeddings']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'database']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['ml', 'ai']
+    status: dormant
+  - id: security_engineer-01
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-02
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-03
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-04
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-05
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-06
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-07
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-08
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-09
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-10
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-11
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-12
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-13
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: security_engineer-14
+    role: security_engineer
+    skills: ['Security', 'Auth', 'OWASP']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['security', 'review']
+    status: dormant
+  - id: cloud_engineer-01
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-02
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-03
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-04
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-05
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-06
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-07
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-08
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-09
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-10
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-11
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: cloud_engineer-12
+    role: cloud_engineer
+    skills: ['AWS', 'Infra', 'Networking']
+    tools: ['filesystem', 'terminal', 'tests', 'git', 'docker']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: balanced
+    preferred_task_types: ['cloud', 'infra']
+    status: dormant
+  - id: architect-01
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-02
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-03
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-04
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-05
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-06
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-07
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-08
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-09
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: architect-10
+    role: architect
+    skills: ['Architecture', 'System Design']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['architecture', 'design']
+    status: dormant
+  - id: tech_lead-01
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-02
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-03
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-04
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-05
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-06
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-07
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-08
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-09
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: tech_lead-10
+    role: tech_lead
+    skills: ['Leadership', 'Code Review']
+    tools: ['filesystem', 'terminal', 'tests', 'git']
+    permissions: ['workspace.read', 'workspace.write', 'execute.test']
+    model_policy: review
+    preferred_task_types: ['review', 'lead']
+    status: dormant
+  - id: engineering_manager-01
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-02
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-03
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-04
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-05
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-06
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-07
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-08
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-09
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-10
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-11
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: engineering_manager-12
+    role: engineering_manager
+    skills: ['Management', 'Planning']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: reasoning_heavy
+    preferred_task_types: ['management', 'planning']
+    status: dormant
+  - id: documentation_writer-01
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-02
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-03
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-04
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-05
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-06
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-07
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-08
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-09
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-10
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-11
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant
+  - id: documentation_writer-12
+    role: documentation_writer
+    skills: ['Writing', 'Docs']
+    tools: ['filesystem', 'terminal', 'git']
+    permissions: ['workspace.read', 'workspace.write']
+    model_policy: fast
+    preferred_task_types: ['docs']
+    status: dormant

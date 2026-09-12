@@ -1,0 +1,60 @@
+{
+  "name": "ai-agency-desktop",
+  "version": "1.0.0",
+  "description": "AI Agency — Autonomous Software-Engineering Agency (Electron Desktop)",
+  "main": "main.js",
+  "author": "AI Agency <agency@local>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "backend": "PYTHONPATH=backend python -m uvicorn agency.app:app --host 0.0.0.0 --port 8000",
+    "desktop": "concurrently \"npm run backend\" \"wait-on http://localhost:8000/api/health && electron .\"",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "pack": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^30.5.1",
+    "electron-builder": "^24.13.3",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.aiagency.desktop",
+    "productName": "AI Agency",
+    "files": [
+      "main.js",
+      "preload.js",
+      "frontend/**/*",
+      "backend/**/*",
+      "config/**/*",
+      "!workspace/**/*",
+      "!**/__pycache__/**",
+      "!**/.git/**"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "build/icon.png",
+      "category": "Development"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
