@@ -1,0 +1,53 @@
+/* Metric Component */
+/* Label, value with unit, time context, comparison where relevant */
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.metric__label {
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+}
+
+.metric__value-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.metric__value {
+  font-size: var(--text-metric);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-metric);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.metric__unit {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-tertiary);
+  margin-left: var(--space-1);
+}
+
+.metric__delta {
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-medium);
+}
+
+.metric__delta--up {
+  color: var(--color-danger);
+}
+
+.metric__delta--down {
+  color: var(--color-success);
+}
+
+.metric__time {
+  font-size: var(--text-metadata);
+  color: var(--color-text-tertiary);
+}

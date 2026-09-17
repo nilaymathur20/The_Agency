@@ -1,0 +1,318 @@
+"""
+Agency Workflow Chain implementation.
+Implements waterfall phases with Instructor → Assistant multi-turn dialogue,
+clarification-first validation, and short/long-term memory.
+
+Pattern: multi-phase workflow with parallel execution and clarification-first validation.
+This file is the bridge that updates our existing PM/orchestrator to behave like Agency Chain
+using Tool Gateway + OpenRouter multi-agent router.
+
+Usage:
+    from agency.agency_chain import get_chain, build_tasks_from_chain
+    tasks = build_tasks_from_chain(project, store, events, workspace_manager)
+"""
+import uuid
+from pathlib import Path
+from typing import Dict, Any, List
+import json
+
+from .config import get_config
+from .store import get_store
+from .events import get_event_bus
+from .workspace import get_workspace_manager
+
+# Default Agency Chain phases (mirrors config/agency_chain.yaml but hardcoded fallback if yaml missing)
+DEFAULT_PHASES = [
+    {
+        "id": "demand_analysis",
+        "name": "DemandAnalysis",
+        "instructor": "ceo",
+        "assistant": "cpo",
+        "instruction": "Analyze user requirements and produce detailed PRD in .agency/requirements.md",
+        "deps": [],
+        "role": "engineering_manager",
+    },
+    {
+        "id": "language_choose",
+        "name": "LanguageChoose",
+        "instructor": "cto",
+        "assistant": "architect",
+        "instruction": "Choose programming language, framework, database; design architecture in .agency/architecture.md",
+        "deps": ["demand_analysis"],
+        "role": "architect",
+    },
+    {
+        "id": "coding_frontend",
+        "name": "Coding",
+        "instructor": "cto",
+        "assistant": "programmer",
+        "instruction": "Implement frontend UI components (src/App.jsx, src/components/*)",
+        "deps": ["language_choose"],
+        "role": "frontend_developer",
+        "parallel_group": "coding",
+    },
+    {
+        "id": "coding_backend",
+        "name": "Coding",
+        "instructor": "cto",
+        "assistant": "programmer",
+        "instruction": "Implement backend API (src/app.py, src/database.py, requirements.txt)",
+        "deps": ["language_choose"],
+        "role": "backend_developer",
+        "parallel_group": "coding",
+    },
+    {
+        "id": "coding_database",
+        "name": "Coding",
+        "instructor": "cto",
+        "assistant": "programmer",
+        "instruction": "Design database schema and migrations (src/models.py, app.db)",
+        "deps": ["language_choose"],
+        "role": "data_engineer",
+        "parallel_group": "coding",
+    },
+    {
+        "id": "code_complete",
+        "name": "CodeComplete",
+        "instructor": "tech_lead",
+        "assistant": "programmer",
+        "instruction": "Wire frontend/backend/database integration (src/integration.py) and fix interfaces",
+        "deps": ["coding_frontend", "coding_backend", "coding_database"],
+        "role": "fullstack_developer",
+    },
+    {
+        "id": "code_review",
+        "name": "CodeReview",
+        "instructor": "programmer",
+        "assistant": "reviewer",
+        "instruction": "Static code review: check correctness, style, security, suggest fixes (docs/review.md)",
+        "deps": ["code_complete"],
+        "role": "security_engineer",
+    },
+    {
+        "id": "testing",
+        "name": "SystemTesting",
+        "instructor": "reviewer",
+        "assistant": "tester",
+        "instruction": "Dynamic testing: run pytest, create tests, fix failures (tests/)",
+        "deps": ["code_review"],
+        "role": "qa_engineer",
+    },
+    {
+        "id": "documenting",
+        "name": "Documenting",
+        "instructor": "tester",
+        "assistant": "documentation_writer",
+        "instruction": "Create README, setup guide, API docs (README.md, docs/)",
+        "deps": ["testing"],
+        "role": "documentation_writer",
+    },
+]
+
+def get_chain():
+    """Load chain from config/agency_chain.yaml if present, else DEFAULT_PHASES"""
+    cfg = get_config()
+    if getattr(cfg, 'agency_chain', None) and isinstance(cfg.agency_chain, dict) and cfg.agency_chain.get("phases"):
+        # Already parsed from yaml
+        return cfg.agency_chain
+    # Fallback try loading file directly
+    chain_path = Path(cfg.config_dir) / "agency_chain.yaml"
+    if chain_path.exists():
+        import yaml
+        try:
+            data = yaml.safe_load(open(chain_path))
+            if data and "phases" in data:
+                return data
+        except Exception as e:
+            print(f"[agency_chain] load failed: {e}")
+    return {"phases": DEFAULT_PHASES}
+
+def _map_instructor_assistant_to_role(instructor: str, assistant: str) -> str:
+    """Map Agency Chain instructors/assistants to our agent registry roles"""
+    mapping = {
+        "ceo": "engineering_manager",
+        "cto": "architect",
+        "cpo": "engineering_manager",
+        "architect": "architect",
+        "programmer": "backend_developer",
+        "reviewer": "security_engineer",
+        "tester": "qa_engineer",
+        "tech_lead": "tech_lead",
+        "documentation_writer": "documentation_writer",
+        "ceo": "engineering_manager",
+    }
+    return mapping.get((assistant or instructor or "").lower(), assistant or instructor or "backend_developer")
+
+def build_tasks_from_chain(project: Dict[str, Any], store=None, event_bus=None, workspace_manager=None, use_agency_chain: bool = True, use_workflow: bool = None, use_chat_chain: bool = None, **kwargs) -> List[Dict[str, Any]]:
+    """
+    Collaborative Workflow task generation: each phase becomes one or more tasks with Instructor→Assistant metadata.
+    This replaces/augments pm.decompose_project with a Agency Chain waterfall.
+    Returns created task dicts with extra fields: agency_chain_phase, instructor, assistant, clarification
+    """
+    # legacy alias
+    if use_workflow is not None:
+        use_agency_chain = use_workflow
+    if use_chat_chain is not None:
+        use_agency_chain = use_chat_chain
+    store = store or get_store()
+    events = event_bus or get_event_bus(store=store)
+    wm = workspace_manager or get_workspace_manager()
+    project_id = project["id"]
+
+    # Try to load chain
+    chain_data = get_chain()
+    phases = chain_data.get("phases") if isinstance(chain_data, dict) else None
+    if not phases:
+        phases = DEFAULT_PHASES
+    # chain_data may have top-level phases list
+    if isinstance(phases, dict):
+        phases = list(phases.values())
+
+    # Normalize phases: ensure each has deps and role
+    # Build id → phase map
+    id_to_phase = {p.get("id"): p for p in phases if p.get("id")}
+
+    # Detect if yaml uses complex structure with parallel groups
+    # For simplicity, we flatten to our DEFAULT_PHASES style if needed
+    # If phases from yaml have different shape (instructor/assistant/subtasks), expand
+    expanded = []
+    for p in phases:
+        # If phase has subtasks with roles, expand each subtask as separate task (parallel execution parallel)
+        subtasks = p.get("subtasks")
+        if subtasks and isinstance(subtasks, list):
+            for st in subtasks:
+                sid = st.get("id") or f"{p['id']}_{st.get('role','')}"
+                # deps: phase inputs
+                deps = p.get("inputs") or p.get("deps") or []
+                # Also need to resolve parallel_group deps properly later
+                expanded.append({
+                    "id": sid,
+                    "name": p.get("name", p.get("id")),
+                    "instructor": p.get("instructor"),
+                    "assistant": p.get("assistant"),
+                    "instruction": st.get("instruction", p.get("instruction", "")),
+                    "deps": deps,
+                    "role": st.get("role") or _map_instructor_assistant_to_role(p.get("instructor"), p.get("assistant")),
+                })
+        else:
+            # Single task per phase
+            expanded.append({
+                "id": p.get("id"),
+                "name": p.get("name", p.get("id")),
+                "instructor": p.get("instructor"),
+                "assistant": p.get("assistant"),
+                "instruction": p.get("instruction") or p.get("description",""),
+                "deps": p.get("inputs") or p.get("deps") or p.get("dependencies") or [],
+                "role": p.get("role") or _map_instructor_assistant_to_role(p.get("instructor"), p.get("assistant")),
+            })
+    phases = expanded
+
+    # Now create tasks in order, resolving deps to task IDs
+    # We need to map phase id → task id
+    phase_id_to_task_id: Dict[str, str] = {}
+    created: List[Dict[str, Any]] = []
+    import datetime
+
+    for phase in phases:
+        # Use deterministic task id prefix for Agency Chain traceability
+        tid = f"TASK-{uuid.uuid4().hex[:6].upper()}"
+        # Resolve deps: phase deps are phase ids, convert to task ids
+        task_deps = []
+        for dep_phase_id in phase.get("deps", []):
+            if dep_phase_id in phase_id_to_task_id:
+                task_deps.append(phase_id_to_task_id[dep_phase_id])
+            else:
+                # If dep is a phase not yet created, try to find by similar id
+                for k,v in phase_id_to_task_id.items():
+                    if k.startswith(dep_phase_id) or dep_phase_id.startswith(k):
+                        task_deps.append(v)
+        # For coding parallel group, all coding_* depend on language_choose
+        # Ensure deps correctly linked
+        title = f"{phase['name']}: {phase['instruction'][:60]}" if len(phase['instruction']) > 60 else f"{phase['name']}: {phase['instruction']}"
+        # More readable title
+        if phase.get("id") in ["coding_frontend","frontend"]:
+            title = "Implement frontend UI"
+        elif phase.get("id") in ["coding_backend","backend"]:
+            title = "Implement backend API"
+        elif phase.get("id") in ["coding_database","database"]:
+            title = "Design database and migrations"
+        elif phase.get("id") == "demand_analysis":
+            title = "DemandAnalysis — Analyze requirements"
+        elif phase.get("id") == "language_choose":
+            title = "LanguageChoose — Tech stack & architecture"
+        elif phase.get("id") == "code_complete":
+            title = "CodeComplete — Integration"
+        elif phase.get("id") == "code_review":
+            title = "CodeReview — Static review"
+        elif phase.get("id") == "testing":
+            title = "SystemTesting — Dynamic tests"
+        elif phase.get("id") == "documenting":
+            title = "Documenting — README & docs"
+
+        task = {
+            "id": tid,
+            "project_id": project_id,
+            "title": title,
+            "description": f"[{phase['name']}] {phase['instruction']}\n\nInstructor: {phase.get('instructor')} → Assistant: {phase.get('assistant')}\nAgency Chain: {phase['id']}\nInstruction: {phase['instruction']}\n\nProject: {project.get('name')} — {project.get('description','')}",
+            "owner_role": phase.get("role"),
+            "owner_agent_id": None,
+            "status": "queued",
+            "priority": "high" if phase['id'] in ["demand_analysis","language_choose","code_review","testing"] else "medium",
+            "dependencies": task_deps,
+            "acceptance_criteria": [
+                f"{phase['name']} completed",
+                "clarification-first validation applied" if getattr(get_config(), "workflow_clarification", getattr(get_config(), "agency_chain_clarification", True)) else "Task completed",
+                "Tests pass" if phase['id'] in ["testing","code_complete"] else "Output reviewed"
+            ],
+            "created_at": datetime.datetime.utcnow().isoformat(),
+            "retry_count": 0,
+            # Agency Chain metadata
+            "agency_chain_phase": phase["id"],
+            "instructor": phase.get("instructor"),
+            "assistant": phase.get("assistant"),
+            "clarification": getattr(get_config(), "workflow_clarification", getattr(get_config(), "agency_chain_clarification", True)),
+        }
+        # Persist
+        store.create_task(task)
+        events.emit(project_id, "task.created", {"task_id": tid, "title": title, "phase": phase["id"], "instructor": phase.get("instructor"), "assistant": phase.get("assistant")}, task_id=tid)
+        phase_id_to_task_id[phase["id"]] = tid
+        created.append(task)
+
+    # Write chain history for memory (long-term)
+    try:
+        wm.ensure_project(project_id)
+        ws_path = wm.get_workspace_path(project_id)
+        hist_path = ws_path / ".agency" / "chain_history.json"
+        hist_path.parent.mkdir(parents=True, exist_ok=True)
+        hist_path.write_text(json.dumps({"chain": chain_data, "phases": phases, "tasks": [{"id": t["id"], "phase": t.get("agency_chain_phase"), "title": t["title"]} for t in created]}, indent=2))
+        # Also write readable chain
+        md = ws_path / ".agency" / "agency_chain.md"
+        md.write_text("# Workflow Chain\n\n" + "\n".join([f"## {p['name']} ({p['id']})\nInstructor: {p['instructor']} → Assistant: {p['assistant']}\nInstruction: {p['instruction']}\nDeps: {p.get('deps')}\n" for p in phases]))
+        # also write uppercase alias for compatibility
+        try:
+            (ws_path / ".agency" / "AGENCY_CHAIN.md").write_text(md.read_text())
+        except: pass
+    except Exception as e:
+        print(f"[agency_chain] write history failed: {e}")
+
+    events.emit(project_id, "pm.agency_chain_created", {"tasks": len(created), "phases": [p['id'] for p in phases]})
+    return created
+
+# Convenience: support workflow_templates templates like Agency Chain 2.0
+def list_yaml_templates():
+    cfg = get_config()
+    instance_dir = Path(cfg.config_dir) / "workflow_templates"
+    if not instance_dir.exists():
+        return []
+    return [p.name for p in instance_dir.glob("*.yaml")]
+
+def load_yaml_template(name: str) -> Dict[str, Any] | None:
+    cfg = get_config()
+    p = Path(cfg.config_dir) / "workflow_templates" / name
+    if not p.exists():
+        # try without .yaml
+        p = Path(cfg.config_dir) / "workflow_templates" / f"{name}.yaml"
+    if not p.exists():
+        return None
+    import yaml
+    return yaml.safe_load(open(p))

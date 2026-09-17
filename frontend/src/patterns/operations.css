@@ -1,0 +1,206 @@
+/* Operations Interface Shell Layout */
+
+.operations-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-canvas);
+}
+
+/* Left navigation rail */
+.operations-nav {
+  width: var(--sidebar-width);
+  background: var(--color-surface);
+  border-right: var(--border-width) solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.operations-nav__header {
+  padding: var(--space-6);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.operations-nav__logo {
+  font-size: var(--text-section-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.operations-nav__subtitle {
+  font-size: var(--text-metadata);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-1);
+}
+
+.operations-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-4);
+  flex: 1;
+}
+
+.operations-nav__item {
+  margin-bottom: var(--space-1);
+}
+
+.operations-nav__button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--duration-inline) var(--easing-out);
+}
+
+.operations-nav__button:hover {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+}
+
+.operations-nav__button--active {
+  background: var(--color-action-primary-soft);
+  color: var(--color-action-primary);
+}
+
+.operations-nav__button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.operations-nav__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.operations-nav__count {
+  margin-left: auto;
+  font-size: var(--text-metadata);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+/* Main workspace */
+.operations-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: var(--space-6);
+  max-width: calc(var(--max-content-width) - var(--sidebar-width) + var(--space-12));
+}
+
+.operations-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.operations-title {
+  font-size: var(--text-page-title);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-page-title);
+  color: var(--color-text-primary);
+}
+
+.operations-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+/* Screen containers */
+.operations-screen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+  .operations-main {
+    max-width: calc(100vw - var(--sidebar-width));
+  }
+}
+
+@media (max-width: 1024px) {
+  .operations-nav {
+    width: 64px;
+  }
+
+  .operations-nav__header,
+  .operations-nav__button span {
+    display: none;
+  }
+
+  .operations-nav__button {
+    justify-content: center;
+    padding: var(--space-3);
+  }
+
+  .operations-nav__count {
+    display: none;
+  }
+
+  .operations-main {
+    margin-left: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .operations-nav {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    border-right: none;
+    border-top: var(--border-width) solid var(--color-border);
+  }
+
+  .operations-nav__header {
+    display: none;
+  }
+
+  .operations-nav__list {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--space-2);
+    width: 100%;
+  }
+
+  .operations-nav__item {
+    margin: 0;
+  }
+
+  .operations-nav__button {
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    font-size: 10px;
+  }
+
+  .operations-nav__button span {
+    display: block;
+  }
+
+  .operations-main {
+    margin-left: 0;
+    margin-bottom: 60px;
+    padding: var(--space-4);
+  }
+}

@@ -1,0 +1,6 @@
+/* Operations App Styles */
+
+.operations-app {
+  min-height: 100vh;
+  background: var(--color-canvas);
+}

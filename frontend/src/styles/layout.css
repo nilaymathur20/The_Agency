@@ -1,0 +1,96 @@
+/* Layout System */
+.app-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--header-height) 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
+  background: var(--surface-base);
+}
+
+.app-layout--collapsed {
+  grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+}
+
+.layout-header {
+  grid-area: header;
+  height: var(--header-height);
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--border-divider);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.layout-sidebar {
+  grid-area: sidebar;
+  background: var(--surface-raised);
+  border-right: 1px solid var(--border-divider);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.layout-main {
+  grid-area: main;
+  padding: var(--content-padding);
+  max-width: var(--max-content-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.grid { display: grid; gap: var(--space-4); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 1024px) {
+  .app-layout { grid-template-columns: 1fr; grid-template-areas: "header" "main"; }
+  .layout-sidebar { display: none; }
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
+  .layout-main { padding: var(--space-4); }
+}
+
+/* Page sections */
+.section { margin-bottom: var(--space-8); }
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+.section__title { font-size: var(--font-size-h2); font-weight: var(--font-weight-heading); }
+
+/* Card */
+.card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.card__header {
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-divider);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card__body { padding: var(--space-6); }
+.card__footer {
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border-divider);
+  background: var(--surface-base);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}

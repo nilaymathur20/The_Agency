@@ -1,0 +1,43 @@
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+.agent-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  box-shadow: var(--shadow-card);
+}
+.agent-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.agent-card__header { display: flex; gap: var(--space-3); align-items: center; }
+.agent-card__avatar {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--surface-active);
+  color: var(--color-primary);
+  display: grid; place-items: center;
+  font-weight: 700; flex-shrink: 0;
+}
+.agent-card__info { flex: 1; min-width: 0; }
+.agent-card__role { font-size: 13px; font-weight: 600; color: var(--text-primary); text-transform: capitalize; }
+.agent-card__id { font-size: 10px; color: var(--text-tertiary); }
+.agent-card__badge {
+  font-size: 10px; font-weight: 700;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border-default);
+}
+.agent-card__badge--working { background: #EFF6FF; color: #1D4ED8; border-color: #BFDBFE; }
+.agent-card__badge--ready { background: #F0FDF4; color: #15803D; border-color: #BBF7D0; }
+.agent-card__badge--blocked { background: #FFFBEB; color: #B45309; border-color: #FDE68A; }
+.agent-card__badge--dormant { background: var(--surface-base); color: var(--text-tertiary); }
+.agent-card__meta { display: flex; gap: 6px; font-size: 11px; color: var(--text-tertiary); margin-top: var(--space-3); }
+.agent-card__skills { display: flex; gap: 6px; margin-top: var(--space-3); flex-wrap: wrap; }
+.agent-card__skill { font-size: 11px; background: var(--surface-base); border: 1px solid var(--border-default); padding: 2px 6px; border-radius: var(--radius-full); color: var(--text-secondary); }

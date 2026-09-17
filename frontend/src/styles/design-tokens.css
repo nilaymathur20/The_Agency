@@ -1,0 +1,116 @@
+/* src/styles/design-tokens.css — Single Source of Truth */
+:root {
+  /* ============ COLORS ============ */
+  --color-primary: #0066cc;
+  --color-primary-hover: #0052a3;
+  --color-primary-active: #003f7a;
+  --color-success: #108C44;
+  --color-success-bg: #ECFDF5;
+  --color-warning: #D97706;
+  --color-warning-bg: #FFFBEB;
+  --color-error: #DC2626;
+  --color-error-bg: #FEF2F2;
+  --color-neutral: #6B7280;
+
+  /* Surfaces */
+  --surface-raised: #FFFFFF;
+  --surface-base: #F9FAFB;
+  --surface-hover: #F3F4F6;
+  --surface-active: #EEF2FF;
+  --surface-disabled: #F3F4F6;
+  --surface-overlay: rgba(17, 24, 39, 0.6);
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-tertiary: #6B7280;
+  --text-disabled: #9CA3AF;
+  --text-inverted: #F3F4F6;
+  --text-link: #0066cc;
+
+  /* Borders */
+  --border-default: #E5E7EB;
+  --border-hover: #D1D5DB;
+  --border-focus: #0066cc;
+  --border-error: #DC2626;
+  --border-divider: #F3F4F6;
+
+  /* ============ TYPOGRAPHY ============ */
+  --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Roboto, sans-serif;
+  --font-family-mono: "Menlo", "Monaco", "Cascadia Code", "Courier New", monospace;
+
+  --font-size-h1: 28px;
+  --font-size-h2: 20px;
+  --font-size-h3: 16px;
+  --font-size-body: 14px;
+  --font-size-label: 12px;
+  --font-size-mono: 12px;
+  --font-size-caption: 11px;
+
+  --font-weight-heading: 600;
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.2;
+  --line-height-body: 1.6;
+
+  /* ============ SPACING ============ */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ============ RADII ============ */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ============ SHADOWS ============ */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+
+  /* ============ TIMING ============ */
+  --duration-fast: 150ms;
+  --duration-standard: 300ms;
+  --duration-slow: 500ms;
+  --easing-out: cubic-bezier(0.33, 0.66, 0.66, 1);
+  --easing-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ============ LAYOUT ============ */
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 64px;
+  --max-content-width: 1280px;
+  --header-height: 64px;
+  --content-padding: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-raised: #1F2937;
+    --surface-base: #111827;
+    --surface-hover: #374151;
+    --text-primary: #F9FAFB;
+    --text-secondary: #D1D5DB;
+    --border-default: #374151;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0.01ms;
+    --duration-standard: 0.01ms;
+    --duration-slow: 0.01ms;
+  }
+}

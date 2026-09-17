@@ -1,0 +1,176 @@
+/* DataTable Component */
+/* Real <table> with scope="col" headers, sticky header, sortable, full-row keyboard focus */
+
+.data-table-container {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-table);
+  line-height: 20px;
+}
+
+.data-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.data-table th {
+  background: var(--color-surface-subtle);
+  padding: var(--space-3) var(--space-4);
+  font-weight: var(--font-weight-semibold);
+  text-align: left;
+  border-bottom: var(--border-width) solid var(--color-border);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-border);
+  vertical-align: middle;
+}
+
+.data-table tbody tr {
+  cursor: pointer;
+  transition: background-color var(--duration-inline) var(--easing-out);
+}
+
+.data-table tbody tr:hover {
+  background: var(--color-surface-subtle);
+}
+
+.data-table tbody tr:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+/* Selected row - color never alone as state signal */
+.data-table__row--selected {
+  background: var(--color-action-primary-soft);
+  border-left: 2px solid var(--color-action-primary);
+}
+
+.data-table__row--selected:hover {
+  background: var(--color-action-primary-soft);
+}
+
+/* Checkbox column */
+.data-table__checkbox-col {
+  width: 40px;
+  text-align: center;
+}
+
+.data-table__checkbox-col input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Sort button */
+.data-table__sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  color: inherit;
+}
+
+.data-table__sort-btn:hover {
+  color: var(--color-action-primary);
+}
+
+.data-table__sort-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.data-table__sort-indicator {
+  color: var(--color-action-primary);
+}
+
+/* Loading state */
+.data-table__loading {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+/* Empty state */
+.data-table__empty {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.data-table__empty p {
+  margin-bottom: var(--space-4);
+}
+
+/* Error state */
+.data-table__error {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--color-danger);
+}
+
+/* Pagination */
+.data-table__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-subtle);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.data-table__pagination-info {
+  font-size: var(--text-metadata);
+  color: var(--color-text-secondary);
+}
+
+.data-table__pagination-controls {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.data-table__pagination-controls button {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-metadata);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--duration-inline) var(--easing-out);
+}
+
+.data-table__pagination-controls button:hover:not(:disabled) {
+  background: var(--color-surface-subtle);
+}
+
+.data-table__pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .data-table-container {
+    overflow-x: auto;
+  }
+
+  .data-table {
+    min-width: 600px;
+  }
+}

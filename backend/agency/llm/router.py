@@ -1,6 +1,6 @@
 """Model Router: selects model by task/role via OpenRouter, handles fallbacks, tracks health.
 
-ChatDev-inspired: each agent/phase can use a different OpenRouter model,
+Agency Chain: each agent/phase can use a different OpenRouter model,
 all through one OPENROUTER_API_KEY. .env defines MODEL_CEO, MODEL_PROGRAMMER, etc.
 Router checks per-role env var first, then falls back to policy yaml.
 """
@@ -16,8 +16,8 @@ class ModelRouter:
         self.health: Dict[str, Dict[str, Any]] = {}
 
     def select_model(self, task: Dict[str, Any], agent: Dict[str, Any] = None) -> Dict[str, Any]:
-        """Returns {model, fallbacks, policy} — ChatDev per-role OpenRouter first."""
-        # 1. ChatDev per-role via .env (highest priority) — MODEL_CEO etc. all on OpenRouter
+        """Returns {model, fallbacks, policy} — Agency Chain per-role OpenRouter first."""
+        # 1. Agency Chain per-role via .env (highest priority) — MODEL_CEO etc. all on OpenRouter
         role = (agent.get("role") if agent else None) or (task.get("owner_role") if task else None) or ""
         per_role = self.config.get_model_for_role(role)
         if per_role:
@@ -31,7 +31,7 @@ class ModelRouter:
                 fallbacks.append("mock")
             return {"model": per_role, "fallbacks": fallbacks, "policy": f"role:{role}", "policy_data": policy}
 
-        # 2. Also check task's chat_chain instructor/assistant
+        # 2. Also check task's agency_chain instructor/assistant
         for key in ["instructor","assistant"]:
             val = task.get(key) if task else None
             if val:
@@ -57,7 +57,7 @@ class ModelRouter:
             if "reasoning_heavy" in self.config.model_policies:
                 policy_name = "reasoning_heavy"
 
-        # ChatDev: if provider is openrouter and mock fallback desired, keep behavior
+        # Agency Chain: if provider is openrouter and mock fallback desired, keep behavior
         policy = self.config.get_model_policy(policy_name)
         if not policy:
             policy = self.config.get_model_policy("balanced") or {"primary": "mock", "fallbacks": []}

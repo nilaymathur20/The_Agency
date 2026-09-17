@@ -1,4 +1,4 @@
-"""Agent Runtime: reusable execution loop + ChatDev Instructor→Assistant with dehallucination."""
+"""Agent Runtime: reusable execution loop — Instructor→Assistant with clarification."""
 import time
 import json
 import uuid
@@ -22,11 +22,11 @@ from .tools.docker import TOOL_SCHEMAS as DOCKER_SCHEMAS
 
 ALL_TOOL_SCHEMAS = FS_SCHEMAS + TERM_SCHEMAS + DB_SCHEMAS + GIT_SCHEMAS + DOCKER_SCHEMAS
 
-# ChatDev-inspired prompt: Instructor instructs, Assistant responds via tools, with dehallucination
-BASE_PROMPT = """You are a specialist software-engineering agent operating inside an AI Agency (ChatDev-style).
+# Workflow prompt: Instructor instructs, Assistant responds via tools
+BASE_PROMPT = """You are a specialist software-engineering agent operating inside an AI Agency (Collaborative Workflow).
 
 ROLE: {role}
-ChatDev Phase: {phase}
+Workflow Phase: {phase}
 Instructor: {instructor} → Assistant: {assistant}
 
 TASK:
@@ -41,8 +41,8 @@ CONSTRAINTS:
 ACCEPTANCE CRITERIA:
 {acceptance_criteria}
 
-DEHALLUCINATION:
-{dehallucination}
+clarification:
+{clarification}
 
 You have access only to the tools explicitly provided to you.
 Do not claim that a change was made unless a tool actually performed it.
@@ -54,9 +54,9 @@ Never bypass security controls or workspace restrictions.
 When finished, provide a concise structured completion report.
 """
 
-DEHALLUCINATION_ON = """Communicative Dehallucination (ChatDev): Before answering, if information is vague or incomplete, FIRST request clarification by reasoning what is missing, then proceed only after you have inspected files or gathered context. Address one concrete issue at a time and validate via tools before next step. This reduces coding hallucinations."""
+CLARIFICATION_ON = """clarification-first validation: Before answering, if information is vague or incomplete, FIRST request clarification by reasoning what is missing, then proceed only after you have inspected files or gathered context. Address one concrete issue at a time and validate via tools before next step. This reduces coding hallucinations."""
 
-DEHALLUCINATION_OFF = """Proceed directly to implementation via tools."""
+CLARIFICATION_OFF = """Proceed directly to implementation via tools."""
 
 class AgentRuntime:
     def __init__(self, config=None, store=None, gateway=None, event_bus=None, workspace_manager=None, router=None, registry=None):
@@ -103,16 +103,16 @@ class AgentRuntime:
 
         self.registry.set_status(agent_id, "working", current_task_id=task_id)
         self.store.update_task(task_id, {"status": "running", "started_at": time.strftime("%Y-%m-%dT%H:%M:%S")})
-        self.events.emit(project_id, "task.started", {"task_id": task_id, "agent_id": agent_id, "title": task["title"], "phase": task.get("chat_chain_phase"), "instructor": task.get("instructor"), "assistant": task.get("assistant")}, task_id=task_id, agent_id=agent_id)
+        self.events.emit(project_id, "task.started", {"task_id": task_id, "agent_id": agent_id, "title": task["title"], "phase": task.get("agency_chain_phase"), "instructor": task.get("instructor"), "assistant": task.get("assistant")}, task_id=task_id, agent_id=agent_id)
         self.events.emit(project_id, "agent.awakened", {"agent_id": agent_id, "role": agent.get("role")}, task_id=task_id, agent_id=agent_id)
 
         workspace_path = self.workspace_manager.get_workspace_path(project_id)
         memory = self.workspace_manager.read_project_memory(project_id)
-        # Also load chat chain long-term memory if exists
+        # Also load workflow long-term memory if exists
         try:
-            hist_path = workspace_path / ".agency" / "chat_history.json"
+            hist_path = workspace_path / ".agency" / "chain_history.json"
             if hist_path.exists():
-                memory["chat_chain"] = hist_path.read_text()[:3000]
+                memory["agency_chain"] = hist_path.read_text()[:3000]
         except:
             pass
 
@@ -133,9 +133,9 @@ class AgentRuntime:
         success = False
         error = None
 
-        # Use ChatDev max turns per phase if configured
-        if self.config.chatdev_max_turns:
-            max_turns = min(max_turns, self.config.chatdev_max_turns + 4)
+        # Use Agency Chain max turns per phase if configured
+        if self.config.workflow_max_turns:
+            max_turns = min(max_turns, self.config.workflow_max_turns + 4)
 
         try:
             for turn in range(max_turns):
@@ -152,7 +152,7 @@ class AgentRuntime:
 
                 assistant_content = response.get("content", "")
                 tool_calls = response.get("tool_calls", [])
-                # Log which OpenRouter model answered (ChatDev: different model per agent)
+                # Log which OpenRouter model answered (Agency Chain: different model per agent)
                 model_used = response.get("model_used", "unknown")
                 messages.append({"role": "assistant", "content": assistant_content, "tool_calls": tool_calls})
                 self.events.emit(project_id, "agent.thinking", {"content": assistant_content[:500], "tool_calls": len(tool_calls), "model": model_used}, task_id=task_id, agent_id=agent_id)
@@ -166,12 +166,12 @@ class AgentRuntime:
                             "agent_id": agent_id,
                             "task_id": task_id,
                             "model": model_used,
-                            "phase": task.get("chat_chain_phase"),
+                            "phase": task.get("agency_chain_phase"),
                         }
                         success = True
                         break
                     else:
-                        messages.append({"role": "user", "content": "Please proceed to implement using available tools. Inspect files first. If requirements are vague, apply communicative dehallucination: briefly state what you need clarified, then inspect workspace for context before acting."})
+                        messages.append({"role": "user", "content": "Please proceed to implement using available tools. Inspect files first. If requirements are vague, apply clarification-first validation: briefly state what you need clarified, then inspect workspace for context before acting."})
                         continue
 
                 for tc in tool_calls:
@@ -212,12 +212,12 @@ class AgentRuntime:
                 try:
                     from .tools import git as git_tools
                     ws_root = self.workspace_manager.get_workspace_path(project_id)
-                    git_tools.git_checkpoint(ws_root, f"task {task_id} [{task.get('chat_chain_phase')}] by {agent_id} via {report.get('model')}")
+                    git_tools.git_checkpoint(ws_root, f"task {task_id} [{task.get('agency_chain_phase')}] by {agent_id} via {report.get('model')}")
                     import subprocess, uuid as uid
                     res = subprocess.run(["git","rev-parse","HEAD"], cwd=str(ws_root), capture_output=True, text=True, timeout=5)
                     if res.returncode == 0:
                         commit = res.stdout.strip()
-                        self.store.create_checkpoint({"id": uid.uuid4().hex[:8], "project_id": project_id, "git_commit": commit, "description": f"task {task_id} {task.get('chat_chain_phase')} completion"})
+                        self.store.create_checkpoint({"id": uid.uuid4().hex[:8], "project_id": project_id, "git_commit": commit, "description": f"task {task_id} {task.get('agency_chain_phase')} completion"})
                 except:
                     pass
                 return {"success": True, "report": report, "tool_calls": tool_calls_made}
@@ -240,12 +240,12 @@ class AgentRuntime:
             return {"success": False, "error": str(e)}
 
     def _build_system_prompt(self, task, agent, project, memory) -> str:
-        phase = task.get("chat_chain_phase") or task.get("phase") or "Coding"
+        phase = task.get("agency_chain_phase") or task.get("phase") or "Coding"
         instructor = task.get("instructor") or "cto"
         assistant = task.get("assistant") or agent.get("role")
-        # Map to ChatDev-style instructor/assistant labels
-        # Include dehallucination toggle from .env
-        dehall = DEHALLUCINATION_ON if self.config.chatdev_dehallucination else DEHALLUCINATION_OFF
+        # Map to Collaborative Workflow instructor/assistant labels
+        # Include clarification toggle from .env
+        dehall = CLARIFICATION_ON if getattr(self.config, 'workflow_clarification', getattr(self.config, 'agency_chain_clarification', True)) else CLARIFICATION_OFF
         return BASE_PROMPT.format(
             role=f"{agent['role']} (skills: {', '.join(agent.get('skills', []))}, model_policy: {agent.get('model_policy')})",
             phase=phase,
@@ -255,14 +255,14 @@ class AgentRuntime:
             project=f"Project: {project['name']}\n{project.get('description','')}\nWorkspace: {project['workspace_path']}\nOpenRouter model via {agent.get('model_policy')} | per-role env MODEL_{assistant.upper()} if set\nMemory: {json.dumps(memory)[:2200]}",
             constraints="Follow workspace isolation, do not hardcode secrets, validate before editing, run tests after changes. Communicate via tools only.",
             acceptance_criteria="\n".join(task.get("acceptance_criteria", []) or ["Tests pass", "Files created correctly"]),
-            dehallucination=dehall,
+            clarification=dehall,
         )
 
     def _user_task_prompt(self, task, project) -> str:
-        phase = task.get("chat_chain_phase") or ""
+        phase = task.get("agency_chain_phase") or ""
         instr = task.get("instructor") or "Instructor"
         assist = task.get("assistant") or "Assistant"
-        return f"[{phase}] TASK {task['id']}: {task['title']}\nInstructor {instr} → Assistant {assist}\nDescription: {task.get('description','')}\nProject: {project['name']} ({project['id']})\nAcceptance: {', '.join(task.get('acceptance_criteria', []) or [])}\n\nChatDev Chain: you are the {assist} (Assistant) receiving instruction from {instr} (Instructor). Follow Communicative Dehallucination: if vague, first briefly state needed clarification and inspect workspace/tools before acting. Then implement step by step: inspect workspace, create/edit files, run tests, checkpoint. Workspace is at project workspace root."
+        return f"[{phase}] TASK {task['id']}: {task['title']}\nInstructor {instr} → Assistant {assist}\nDescription: {task.get('description','')}\nProject: {project['name']} ({project['id']})\nAcceptance: {', '.join(task.get('acceptance_criteria', []) or [])}\n\nWorkflow: you are the {assist} (Assistant) receiving instruction from {instr} (Instructor). Follow clarification-first validation: if vague, first briefly state needed clarification and inspect workspace/tools before acting. Then implement step by step: inspect workspace, create/edit files, run tests, checkpoint. Workspace is at project workspace root."
 
     def _filter_tools_for_agent(self, agent) -> List[Dict[str, Any]]:
         category_map = {

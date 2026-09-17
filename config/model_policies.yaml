@@ -1,82 +1,107 @@
-# Model policies — OpenRouter multi-agent (ChatDev-style)
-# Edit for your env. All agents billed via ONE OpenRouter key, different models per role.
+# Model policies — OpenRouter FREE only (all :free suffix)
+# All agents billed via ONE OpenRouter key, different FREE models per role.
+# No paid models — only :free ( $0 ). Free tier: 20 req/min, 50/day (1000/day after $10).
 # .env overrides per-role: MODEL_CEO, MODEL_CTO, MODEL_PROGRAMMER, etc. (highest priority)
-# This file defines policies + fallback chains. Never hardcode in code.
 
 policies:
   balanced:
-    primary: "openrouter/auto"
-    fallbacks: ["mock"]
-    description: "General purpose balanced policy"
+    primary: "openrouter/qwen/qwen3-coder:free"
+    fallbacks: ["openrouter/openai/gpt-oss-120b:free", "openrouter/google/gemma-3-27b-it:free", "openrouter/meta-llama/llama-4-scout:free", "mock"]
+    description: "General purpose — free coding"
 
   backend_default:
-    primary: "openrouter/anthropic/claude-3.5-sonnet"
-    fallbacks: ["openrouter/openai/gpt-4o", "openrouter/qwen/qwen-2.5-coder-32b-instruct", "mock"]
-    description: "Backend coding (Programmer via OpenRouter)"
+    primary: "openrouter/qwen/qwen3-coder:free"
+    fallbacks: ["openrouter/openai/gpt-oss-20b:free", "openrouter/qwen/qwen-2.5-7b-instruct:free", "openrouter/meta-llama/llama-4-maverick:free", "mock"]
+    description: "Backend coding (Programmer) — FREE"
 
   frontend_default:
-    primary: "openrouter/anthropic/claude-3.5-sonnet"
-    fallbacks: ["openrouter/openai/gpt-4o", "mock"]
-    description: "Frontend coding"
+    primary: "openrouter/qwen/qwen3-coder:free"
+    fallbacks: ["openrouter/google/gemma-3-27b-it:free", "mock"]
+    description: "Frontend coding — FREE"
 
   reasoning_heavy:
-    primary: "openrouter/openai/gpt-4o"
-    fallbacks: ["openrouter/anthropic/claude-3.5-sonnet", "mock"]
-    description: "Complex reasoning / architecture (CEO/CTO)"
+    primary: "openrouter/openai/gpt-oss-120b:free"
+    fallbacks: ["openrouter/qwen/qwen3-coder:free", "openrouter/meta-llama/llama-4-scout:free", "mock"]
+    description: "Architecture (CEO/CTO) — FREE heavy reasoning"
 
   fast:
-    primary: "openrouter/google/gemini-2.0-flash-001"
-    fallbacks: ["mock"]
-    description: "Quick CPO/fast tasks"
+    primary: "openrouter/google/gemini-2.0-flash-exp:free"
+    fallbacks: ["openrouter/google/gemma-3-27b-it:free", "mock"]
+    description: "Quick CPO/fast — FREE"
 
   review:
-    primary: "openrouter/openai/gpt-4o-mini"
-    fallbacks: ["openrouter/qwen/qwen-2.5-coder-32b-instruct", "mock"]
-    description: "Code review / security (Reviewer)"
+    primary: "openrouter/google/gemma-3-27b-it:free"
+    fallbacks: ["openrouter/qwen/qwen-2.5-7b-instruct:free", "mock"]
+    description: "Code review — FREE"
 
   tester:
-    primary: "openrouter/qwen/qwen-2.5-coder-32b-instruct"
-    fallbacks: ["openrouter/openai/gpt-4o-mini", "mock"]
-    description: "Testing (Tester)"
+    primary: "openrouter/qwen/qwen-2.5-7b-instruct:free"
+    fallbacks: ["openrouter/google/gemma-3-27b-it:free", "mock"]
+    description: "Testing — FREE"
 
   emergency:
     primary: "mock"
     fallbacks: []
-    description: "Emergency fallback - mock"
+    description: "Offline fallback — mock"
 
 models:
+  openrouter/qwen/qwen3-coder:free:
+    provider: openrouter
+    context_length: 131000
+    supports_tools: true
+    description: "#1 free coding — Qwen3 Coder"
+  openrouter/openai/gpt-oss-120b:free:
+    provider: openrouter
+    context_length: 128000
+    supports_tools: true
+    description: "Free heavy reasoning — GPT-OSS 120B"
+  openrouter/openai/gpt-oss-20b:free:
+    provider: openrouter
+    context_length: 128000
+    supports_tools: true
+    description: "Free coding — GPT-OSS 20B"
+  openrouter/google/gemma-3-27b-it:free:
+    provider: openrouter
+    context_length: 131000
+    supports_tools: true
+    description: "Free fast — Gemma 3 27B"
+  openrouter/google/gemini-2.0-flash-exp:free:
+    provider: openrouter
+    context_length: 1000000
+    supports_tools: true
+    description: "Free 1M context — Gemini 2.0 Flash"
+  openrouter/meta-llama/llama-4-scout:free:
+    provider: openrouter
+    context_length: 10000000
+    supports_tools: true
+    description: "Free 10M — Llama 4 Scout"
+  openrouter/meta-llama/llama-4-maverick:free:
+    provider: openrouter
+    context_length: 128000
+    supports_tools: true
+    description: "Free — Llama 4 Maverick"
+  openrouter/qwen/qwen-2.5-7b-instruct:free:
+    provider: openrouter
+    context_length: 32000
+    supports_tools: true
+    description: "Free small — Qwen 2.5 7B"
+  openrouter/deepseek/deepseek-r1:free:
+    provider: openrouter
+    context_length: 64000
+    supports_tools: true
+    description: "Free reasoning — DeepSeek R1 (if still free)"
+  openrouter/nvidia/nemotron-3-ultra:free:
+    provider: openrouter
+    context_length: 1000000
+    supports_tools: true
+    description: "Free 1M — Nemotron 3 Ultra"
   openrouter/auto:
     provider: openrouter
     context_length: 128000
     supports_tools: true
-    description: "OpenRouter auto-routing"
-  openrouter/anthropic/claude-3.5-sonnet:
-    provider: openrouter
-    context_length: 200000
-    supports_tools: true
-    description: "CEO/Programmer via Claude"
-  openrouter/openai/gpt-4o:
-    provider: openrouter
-    context_length: 128000
-    supports_tools: true
-    description: "CTO/Reasoning via GPT-4o"
-  openrouter/openai/gpt-4o-mini:
-    provider: openrouter
-    context_length: 128000
-    supports_tools: true
-    description: "Reviewer via GPT-4o-mini"
-  openrouter/qwen/qwen-2.5-coder-32b-instruct:
-    provider: openrouter
-    context_length: 32768
-    supports_tools: true
-    description: "Tester/Coder via Qwen"
-  openrouter/google/gemini-2.0-flash-001:
-    provider: openrouter
-    context_length: 1000000
-    supports_tools: true
-    description: "Fast/CPO via Gemini Flash"
+    description: "Auto routing (will pick free if :free in pool)"
   mock:
     provider: mock
     context_length: 32000
     supports_tools: true
-    description: "Offline deterministic mock (no key needed)"
+    description: "Offline mock — no API needed"

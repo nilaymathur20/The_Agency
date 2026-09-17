@@ -1,0 +1,120 @@
+/* Audit Log Pattern */
+
+.audit-log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Filters */
+.audit-log__filters {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.audit-log__search {
+  flex: 1;
+  max-width: 300px;
+}
+
+.audit-log__filter-group {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.audit-log__select {
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: var(--text-body);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.audit-log__select:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Actor role in table */
+.audit-actor-role {
+  display: block;
+  font-size: var(--text-metadata);
+  color: var(--color-text-tertiary);
+}
+
+/* Target label in table */
+.audit-target-label {
+  display: block;
+  font-size: var(--text-metadata);
+  color: var(--color-text-secondary);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Expand button */
+.audit-expand-btn {
+  padding: var(--space-1) var(--space-2);
+  background: transparent;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-metadata);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background-color var(--duration-inline) var(--easing-out);
+}
+
+.audit-expand-btn:hover {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+}
+
+.audit-expand-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Expanded row details */
+.audit-log__expanded {
+  background: var(--color-surface-subtle);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.audit-log__expanded-title {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.audit-log__expanded-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+}
+
+.audit-log__expanded-grid dt {
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.audit-log__expanded-grid dd {
+  font-size: var(--text-body);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Footer */
+.audit-log__footer {
+  font-size: var(--text-metadata);
+  color: var(--color-text-tertiary);
+  padding: var(--space-2) 0;
+}

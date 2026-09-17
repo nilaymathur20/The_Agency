@@ -1,0 +1,66 @@
+.header {
+  height: var(--header-height);
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--border-divider);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  gap: var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.header__left { display: flex; align-items: center; gap: var(--space-4); }
+.header__menu {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.header__menu:hover { background: var(--surface-hover); border-color: var(--border-default); }
+.header__brand { display: flex; align-items: center; gap: var(--space-3); }
+.header__logo {
+  width: 36px; height: 36px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-sm);
+  display: grid; place-items: center;
+  font-weight: 700;
+}
+.header__title { font-weight: var(--font-weight-heading); font-size: 15px; line-height: 1; }
+.header__subtitle { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; }
+.header__center { display: flex; align-items: center; gap: var(--space-3); }
+.header__status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+}
+.header__status--online { color: var(--color-success); background: var(--color-success-bg); border-color: #A7F3D0; }
+.header__status--offline { color: var(--color-warning); background: var(--color-warning-bg); border-color: #FDE68A; }
+.header__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+.header__provider {
+  font-size: 11px;
+  padding: 4px 8px;
+  background: var(--surface-base);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.header__right { display: flex; align-items: center; gap: var(--space-2); }
+.header__avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), #7C3AED);
+  color: white;
+  display: grid; place-items: center;
+  font-weight: 600; font-size: 13px;
+}

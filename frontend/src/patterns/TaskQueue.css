@@ -1,0 +1,99 @@
+/* Task Queue Pattern */
+
+.task-queue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Status tabs */
+.task-queue__status-tabs {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: var(--border-width) solid var(--color-border);
+  overflow-x: auto;
+}
+
+.task-queue__status-tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--duration-inline) var(--easing-out);
+}
+
+.task-queue__status-tab:hover {
+  color: var(--color-text-primary);
+}
+
+.task-queue__status-tab--active {
+  color: var(--color-action-primary);
+  border-bottom-color: var(--color-action-primary);
+}
+
+.task-queue__status-tab:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.task-queue__status-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-tertiary);
+}
+
+/* Bulk actions bar */
+.task-queue__bulk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-action-primary-soft);
+  border-radius: var(--radius-md);
+}
+
+.task-queue__bulk-bar span {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-action-primary);
+}
+
+/* Task title in table */
+.task-title {
+  font-size: var(--text-metadata);
+  color: var(--color-text-secondary);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Drawer sections */
+.task-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.task-drawer__section {
+  padding-bottom: var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-surface-subtle);
+}
+
+.task-drawer__section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.task-drawer__section-title {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2) 0;
+}

@@ -2,9 +2,9 @@
 
 Dual mode:
 - classic: original waterfall (demand → coding → testing ...)
-- chatdev: ChatDev ChatChain with Instructor→Assistant per phase + dehallucination
+- agency_chain: Agency Chain with Instructor→Assistant per phase + clarification
 
-ChatDev-inspired when config/chat_chain.yaml exists or use_chatdev=True.
+Workflow when config/agency_chain.yaml exists or use_workflow=True.
 Both use OpenRouter multi-agent router for model selection.
 """
 import uuid
@@ -13,39 +13,47 @@ from .store import get_store
 from .events import get_event_bus
 from .workspace import get_workspace_manager
 
-def decompose_project(project: Dict[str, Any], store=None, event_bus=None, workspace_manager=None, use_chatdev: bool = None) -> List[Dict[str, Any]]:
+def decompose_project(project: Dict[str, Any], store=None, event_bus=None, workspace_manager=None, use_workflow: bool = None, use_agency_chain: bool = None, use_chat_chain: bool = None) -> List[Dict[str, Any]]:
     """
     Create a task graph for the project.
-    If use_chatdev is None, auto-detect: prefer ChatDev chain if available and env CHATDEV not disabled.
+    If use_workflow is None, auto-detect: prefer workflow chain if available and env not disabled.
     """
+    # legacy alias support
+    if use_workflow is None and use_agency_chain is not None:
+        use_workflow = use_agency_chain
+    if use_workflow is None and use_chat_chain is not None:
+        use_workflow = use_chat_chain
     store = store or get_store()
     events = event_bus or get_event_bus(store=store)
     wm = workspace_manager or get_workspace_manager()
 
-    # Auto-detect ChatDev mode
-    if use_chatdev is None:
+    # Auto-detect Agency Chain mode
+    if use_workflow is None:
         try:
             from .config import get_config
             cfg = get_config()
-            # If chat_chain.yaml exists or .env has CHATDEV enabled, use ChatDev
-            if cfg.chat_chain and len(cfg.chat_chain) > 0:
-                use_chatdev = True
+            # If agency_chain.yaml exists or .env has agency_chain enabled, use Agency Chain
+            if getattr(cfg, 'agency_chain', None) and len(cfg.agency_chain) > 0:
+                use_workflow = True
             else:
                 # Check if user explicitly wants classic
                 import os
-                use_chatdev = os.getenv("USE_CHATDEV", "true").lower() not in ("0","false","no")
-                # But if project description mentions chatdev, force it
-                if use_chatdev and "classic" in (project.get("description","").lower()):
-                    use_chatdev = False
+                use_workflow = os.getenv("USE_WORKFLOW", "true").lower() not in ("0","false","no")
+                # But if project description mentions agency_chain, force it
+                if use_workflow and "classic" in (project.get("description","").lower()):
+                    use_workflow = False
         except:
-            use_chatdev = True
+            use_workflow = True
 
-    if use_chatdev:
+    if use_workflow:
         try:
-            from .chat_chain import build_tasks_from_chain
-            return build_tasks_from_chain(project, store=store, event_bus=events, workspace_manager=wm, use_chatdev=True)
+            from .agency_chain import build_tasks_from_chain
+            try:
+                return build_tasks_from_chain(project, store=store, event_bus=events, workspace_manager=wm)
+            except TypeError:
+                return build_tasks_from_chain(project, store=store, event_bus=events, workspace_manager=wm, use_agency_chain=True)
         except Exception as e:
-            print(f"[pm] chat_chain failed, falling back to classic: {e}")
+            print(f"[pm] agency_chain failed, falling back to classic: {e}")
             # fall through to classic
 
     # ── Classic waterfall (original) ──
@@ -80,7 +88,7 @@ def decompose_project(project: Dict[str, Any], store=None, event_bus=None, works
         owner_role="architect",
         priority="high",
         acceptance=["architecture.md created", "Tech stack decided"],
-        extra={"chat_chain_phase": "demand_analysis", "instructor": "ceo", "assistant": "cpo"}
+        extra={"agency_chain_phase": "demand_analysis", "instructor": "ceo", "assistant": "cpo"}
     )
     tasks.append(t_req)
 
@@ -98,27 +106,27 @@ def decompose_project(project: Dict[str, Any], store=None, event_bus=None, works
     if needs_frontend:
         t_front = new_task("Implement frontend UI","Build UI components, styling, state, and API integration. Create src/ frontend files and ensure they compile.",
             owner_role="frontend_developer", deps=[t_req["id"]], priority="high", acceptance=["UI files created", "Components render"],
-            extra={"chat_chain_phase": "coding", "instructor": "cto", "assistant": "programmer"})
+            extra={"agency_chain_phase": "coding", "instructor": "cto", "assistant": "programmer"})
         tasks.append(t_front)
     if needs_backend:
         t_back = new_task("Implement backend API","Create backend API endpoints, services, validation. Use FastAPI or Express as appropriate.",
             owner_role="backend_developer", deps=[t_req["id"]], priority="high", acceptance=["API endpoints implemented", "API documented"],
-            extra={"chat_chain_phase": "coding", "instructor": "cto", "assistant": "programmer"})
+            extra={"agency_chain_phase": "coding", "instructor": "cto", "assistant": "programmer"})
         tasks.append(t_back)
     if needs_data:
         t_data = new_task("Design database and migrations","Design schema, create database, run migrations. Ensure data layer is testable.",
             owner_role="data_engineer", deps=[t_req["id"]], priority="medium", acceptance=["Schema created", "Migrations run"],
-            extra={"chat_chain_phase": "coding", "instructor": "cto", "assistant": "programmer"})
+            extra={"agency_chain_phase": "coding", "instructor": "cto", "assistant": "programmer"})
         tasks.append(t_data)
     if needs_mobile:
         t_mobile = new_task("Implement mobile features","Build mobile platform integration and networking.",
             owner_role="mobile_developer", deps=[t_req["id"]], acceptance=["Mobile build succeeds"],
-            extra={"chat_chain_phase": "coding"})
+            extra={"agency_chain_phase": "coding"})
         tasks.append(t_mobile)
     if needs_ml:
         t_ml = new_task("Build ML/AI integration","Integrate model inference, embeddings, evaluation.",
             owner_role="ml_engineer", deps=[t_req["id"]], acceptance=["Model integration works"],
-            extra={"chat_chain_phase": "coding"})
+            extra={"agency_chain_phase": "coding"})
         tasks.append(t_ml)
 
     integration_deps = [t["id"] for t in [t_front, t_back, t_data, t_mobile, t_ml] if t]
@@ -127,37 +135,37 @@ def decompose_project(project: Dict[str, Any], store=None, event_bus=None, works
 
     t_integration = new_task("Integration and wiring","Wire frontend/backend/database together, ensure end-to-end flow works. Fix conflicts.",
         owner_role="fullstack_developer", deps=integration_deps, priority="high", acceptance=["Integration works", "Manual smoke test passes"],
-        extra={"chat_chain_phase": "code_complete", "instructor": "tech_lead", "assistant": "programmer"})
+        extra={"agency_chain_phase": "code_complete", "instructor": "tech_lead", "assistant": "programmer"})
     tasks.append(t_integration)
 
     t_tests = new_task("Create and run tests","Create automated tests (unit/integration), run test suite, repair failures. Must achieve passing tests.",
         owner_role="qa_engineer", deps=[t_integration["id"]], priority="high", acceptance=["Tests pass", "Coverage reasonable"],
-        extra={"chat_chain_phase": "testing", "instructor": "reviewer", "assistant": "tester"})
+        extra={"agency_chain_phase": "testing", "instructor": "reviewer", "assistant": "tester"})
     tasks.append(t_tests)
 
     t_sec = new_task("Security review","Review auth, input handling, dependencies, secrets. Report findings.",
         owner_role="security_engineer", deps=[t_tests["id"]], priority="medium", acceptance=["Security checklist reviewed"],
-        extra={"chat_chain_phase": "code_review", "instructor": "programmer", "assistant": "reviewer"})
+        extra={"agency_chain_phase": "code_review", "instructor": "programmer", "assistant": "reviewer"})
     tasks.append(t_sec)
 
     t_docker = new_task("Build Docker and deployment config","Create Dockerfile, docker-compose if needed, ensure app builds in container.",
         owner_role="devops_engineer", deps=[t_sec["id"]], priority="medium" if needs_docker else "low", acceptance=["Docker builds", "Container runs"],
-        extra={"chat_chain_phase": "documenting"})
+        extra={"agency_chain_phase": "documenting"})
     tasks.append(t_docker)
 
     t_docs = new_task("Write documentation","Create README, setup instructions, API docs.",
         owner_role="documentation_writer", deps=[t_docker["id"]], priority="low", acceptance=["README complete", "Setup documented"],
-        extra={"chat_chain_phase": "documenting", "instructor": "tester", "assistant": "documentation_writer"})
+        extra={"agency_chain_phase": "documenting", "instructor": "tester", "assistant": "documentation_writer"})
     tasks.append(t_docs)
 
     t_review = new_task("Final QA and review","Senior review of correctness, architecture, tests, maintainability. Approve or request changes.",
         owner_role="tech_lead", deps=[t_docs["id"]], priority="high", acceptance=["Review approved", "Acceptance criteria satisfied"],
-        extra={"chat_chain_phase": "documenting"})
+        extra={"agency_chain_phase": "documenting"})
     tasks.append(t_review)
 
     for t in tasks:
         store.create_task(t)
-        events.emit(project_id, "task.created", {"task_id": t["id"], "title": t["title"], "phase": t.get("chat_chain_phase")}, task_id=t["id"])
+        events.emit(project_id, "task.created", {"task_id": t["id"], "title": t["title"], "phase": t.get("agency_chain_phase")}, task_id=t["id"])
 
     try:
         wm.ensure_project(project_id)
@@ -165,7 +173,7 @@ def decompose_project(project: Dict[str, Any], store=None, event_bus=None, works
         arch_path = ws_path / ".agency" / "architecture.md"
         arch_content = f"# Architecture for {project['name']}\n\n## Tasks (Classic)\n"
         for t in tasks:
-            arch_content += f"- {t['id']}: {t['title']} (owner: {t['owner_role']}, phase: {t.get('chat_chain_phase')}, deps: {t['dependencies']})\n"
+            arch_content += f"- {t['id']}: {t['title']} (owner: {t['owner_role']}, phase: {t.get('agency_chain_phase')}, deps: {t['dependencies']})\n"
         arch_path.write_text(arch_content)
     except Exception as e:
         print(f"[pm] write architecture failed: {e}")

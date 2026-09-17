@@ -1,0 +1,124 @@
+/* AI Agency Operations Interface — Typography */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650&display=swap');
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== HEADINGS ===== */
+h1,
+.page-title {
+  font-size: var(--text-page-title);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-page-title);
+  margin: 0;
+}
+
+h2,
+.section-title {
+  font-size: var(--text-section-title);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-section);
+  margin: 0;
+}
+
+h3,
+.subsection-title {
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-subsection);
+  margin: 0;
+}
+
+/* ===== BODY TEXT ===== */
+p,
+.body {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+.body-strong {
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: var(--leading-body);
+  margin: 0;
+}
+
+/* ===== METADATA ===== */
+.metadata {
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-metadata);
+  color: var(--color-text-secondary);
+}
+
+/* ===== MONOSPACE ===== */
+code,
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-code);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-metadata);
+}
+
+/* ===== METRIC VALUES ===== */
+.metric-value {
+  font-size: var(--text-metric);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-metric);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== TABLE TEXT ===== */
+table {
+  font-size: var(--text-table);
+  line-height: 20px;
+}
+
+/* ===== STATUS BADGES ===== */
+.status-badge {
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--color-action-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-action-primary-hover);
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ===== TABLES ===== */
+th {
+  font-weight: var(--font-weight-semibold);
+  text-align: left;
+}
+
+td {
+  vertical-align: middle;
+}
+
+/* ===== TABULAR NUMBERS ===== */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}

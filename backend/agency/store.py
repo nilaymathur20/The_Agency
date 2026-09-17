@@ -74,12 +74,12 @@ class Store:
                 created_at TEXT,
                 started_at TEXT,
                 completed_at TEXT,
-                chat_chain_phase TEXT,
+                agency_chain_phase TEXT,
                 instructor TEXT,
                 assistant TEXT
             )""")
-            # migrate: add ChatDev columns if missing on old DB
-            for col, typ in [("chat_chain_phase","TEXT"),("instructor","TEXT"),("assistant","TEXT")]:
+            # migrate: add Agency Chain columns if missing on old DB
+            for col, typ in [("agency_chain_phase","TEXT"),("instructor","TEXT"),("assistant","TEXT")]:
                 try:
                     cur.execute(f"ALTER TABLE tasks ADD COLUMN {col} {typ}")
                 except sqlite3.OperationalError:
@@ -204,16 +204,16 @@ class Store:
 
     # ---------- Tasks ----------
     def create_task(self, task: Dict[str, Any]) -> Dict[str, Any]:
-        # store dependencies as JSON, also in task_dependencies — now with ChatDev fields
+        # store dependencies as JSON, also in task_dependencies — now with Agency Chain fields
         with self._lock:
             conn = self._connect()
             cur = conn.cursor()
             cur.execute("""INSERT INTO tasks
-                (id,project_id,parent_task_id,title,description,owner_agent_id,owner_role,status,priority,acceptance_criteria,dependencies,retry_count,files_changed,report,error,created_at,started_at,completed_at,chat_chain_phase,instructor,assistant)
+                (id,project_id,parent_task_id,title,description,owner_agent_id,owner_role,status,priority,acceptance_criteria,dependencies,retry_count,files_changed,report,error,created_at,started_at,completed_at,agency_chain_phase,instructor,assistant)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                 (task["id"], task["project_id"], task.get("parent_task_id"), task["title"], task.get("description"), task.get("owner_agent_id"), task.get("owner_role"), task.get("status","queued"), task.get("priority","medium"),
                  json.dumps(task.get("acceptance_criteria",[])), json.dumps(task.get("dependencies",[])), task.get("retry_count",0), json.dumps(task.get("files_changed",[])), json.dumps(task.get("report")) if task.get("report") else None, task.get("error"), task.get("created_at", _now()), task.get("started_at"), task.get("completed_at"),
-                 task.get("chat_chain_phase"), task.get("instructor"), task.get("assistant")))
+                 task.get("agency_chain_phase"), task.get("instructor"), task.get("assistant")))
             # dependencies table
             for dep in task.get("dependencies", []):
                 try:

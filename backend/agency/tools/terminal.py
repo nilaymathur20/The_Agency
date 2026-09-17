@@ -19,7 +19,7 @@ def execute_command(workspace_root: Path, command: str, timeout: int = 60) -> Di
             capture_output=True,
             text=True,
             timeout=timeout,
-            env=_clean_env()
+            env=_clean_env(workspace_root)
         )
         stdout = result.stdout or ""
         stderr = result.stderr or ""
@@ -56,7 +56,7 @@ def execute_python(workspace_root: Path, code: str, timeout: int = 30) -> Dict[s
             capture_output=True,
             text=True,
             timeout=timeout,
-            env=_clean_env()
+            env=_clean_env(workspace_root)
         )
         stdout = result.stdout or ""
         stderr = result.stderr or ""
@@ -83,29 +83,35 @@ def execute_python(workspace_root: Path, code: str, timeout: int = 30) -> Dict[s
             pass
 
 def run_tests(workspace_root: Path, test_command: str = "pytest -q", timeout: int = 120) -> Dict[str, Any]:
-    # Default: try pytest, fallback to detection
-    # If no test_command provided, try to detect
-    if not test_command or test_command == "pytest -q":
-        # check if pytest exists and tests folder exists
-        # keep as is
+    # Ensure pytest can find src/ — use python -m pytest with PYTHONPATH
+    if not test_command or test_command.strip() in ("pytest -q", "pytest", "pytest -v"):
+        test_command = "python3 -m pytest -q"
+    # Also ensure src/__init__.py exists for namespace packages
+    try:
+        init = workspace_root / "src" / "__init__.py"
+        if not init.exists() and (workspace_root / "src").exists():
+            init.write_text("# package\n", encoding="utf-8")
+    except:
         pass
     return execute_command(workspace_root, test_command, timeout=timeout)
 
-def _clean_env():
-    # Remove host secrets; only pass safe env
+def _clean_env(workspace_root=None):
+    # Remove host secrets; only pass safe env, but ensure PYTHONPATH includes workspace
     import os
-    # copy but remove sensitive keys
     env = dict(os.environ)
-    # Don't leak OPENROUTER_API_KEY to subprocess by default (security.md)
-    # Actually tests may need PATH, HOME, etc. Keep minimal.
-    # Remove keys that look like secrets
     for k in list(env.keys()):
         if "API_KEY" in k or "SECRET" in k or "TOKEN" in k:
-            # Keep only if explicitly needed? Remove for subprocess
-            # Let's remove OPENROUTER_API_KEY from child
             if k == "OPENROUTER_API_KEY":
                 env.pop(k, None)
-    # Ensure minimal vars
+    # Ensure workspace is on PYTHONPATH so `import src.app` works
+    if workspace_root:
+        ws = str(workspace_root)
+        existing = env.get("PYTHONPATH", "")
+        if ws not in existing:
+            env["PYTHONPATH"] = ws + (":" + existing if existing else "")
+    else:
+        # fallback: add current workspace parent if available
+        pass
     return env
 
 TOOL_SCHEMAS = [

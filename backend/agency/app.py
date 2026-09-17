@@ -39,13 +39,24 @@ app.add_middleware(
 )
 
 # ---- Mount frontend static ----
-frontend_path = Path(__file__).parent.parent.parent / "frontend"
+# Prefer Vite build (frontend/app_dist persistent) then dist, else fallback to legacy frontend/
+frontend_app_dist = Path(__file__).parent.parent.parent / "frontend" / "app_dist"
+frontend_dist = Path(__file__).parent.parent.parent / "frontend" / "dist"
+frontend_legacy = Path(__file__).parent.parent.parent / "frontend"
+if frontend_app_dist.exists() and (frontend_app_dist / "index.html").exists():
+    frontend_path = frontend_app_dist
+elif frontend_dist.exists() and (frontend_dist / "index.html").exists():
+    frontend_path = frontend_dist
+else:
+    frontend_path = frontend_legacy
 if frontend_path.exists():
-    # Only mount if directory has files
     try:
         app.mount("/static", StaticFiles(directory=str(frontend_path), html=True), name="static")
+        print(f"[app] static mount -> {frontend_path}")
     except Exception as e:
         print(f"[app] static mount failed: {e}")
+else:
+    print("[app] no frontend path found")
 
 # ---- Models for API ----
 class ProjectCreateReq(BaseModel):

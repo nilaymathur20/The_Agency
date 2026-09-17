@@ -1,0 +1,30 @@
+.activity-feed { display: flex; flex-direction: column; }
+.activity-feed__count { font-size: 11px; color: var(--text-tertiary); background: var(--surface-base); border: 1px solid var(--border-default); padding: 4px 8px; border-radius: var(--radius-full); }
+.activity-feed__tools { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-divider); display: flex; flex-direction: column; gap: var(--space-3); }
+.activity-feed__chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.activity-feed__chip { font-size: 11px; padding: 4px 8px; border-radius: var(--radius-full); border: 1px solid var(--border-default); background: var(--surface-raised); color: var(--text-secondary); cursor: pointer; }
+.activity-feed__chip--active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+.activity-feed__list { overflow-y: auto; }
+.activity-feed__item {
+  display: flex; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-divider);
+  position: relative;
+}
+.activity-feed__item:last-child { border-bottom: none; }
+.activity-feed__item:hover { background: var(--surface-hover); }
+.activity-feed__icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--surface-active);
+  color: var(--color-primary);
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+.activity-feed__content { flex: 1; min-width: 0; }
+.activity-feed__title { font-size: 13px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.activity-feed__desc { font-size: 12px; color: var(--text-tertiary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.activity-feed__meta { display: flex; gap: 6px; font-size: 11px; color: var(--text-tertiary); margin-top: 4px; align-items: center; }
+.activity-feed__type { background: var(--surface-base); border: 1px solid var(--border-default); padding: 2px 6px; border-radius: var(--radius-full); font-family: var(--font-family-mono); }
+.activity-feed__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-primary); align-self: center; flex-shrink: 0; opacity: 0.7; }

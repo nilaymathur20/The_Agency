@@ -1,0 +1,16 @@
+.approvals { display: flex; flex-direction: column; gap: var(--space-3); }
+.approvals__item {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+.approvals__item--muted { opacity: 0.7; display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-4); }
+.approvals__header { display: flex; align-items: center; justify-content: space-between; }
+.approvals__op { font-size: 13px; font-weight: 600; font-family: var(--font-family-mono); }
+.approvals__status { font-size: 11px; padding: 4px 8px; border-radius: var(--radius-full); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; border: 1px solid var(--border-default); }
+.approvals__status--pending { background: #FFFBEB; color: #B45309; border-color: #FDE68A; }
+.approvals__status--approved { background: #ECFDF5; color: #065F46; border-color: #A7F3D0; }
+.approvals__status--denied { background: #FEF2F2; color: #991B1B; border-color: #FECACA; }
+.approvals__meta { margin-top: 4px; }
+.approvals__actions { display: flex; gap: var(--space-2); margin-top: var(--space-3); }

@@ -1,0 +1,33 @@
+.taskgraph__viewport {
+  overflow: auto;
+  max-height: 560px;
+  background: var(--surface-base);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+.taskgraph__filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.taskgraph__chip {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-transform: capitalize;
+}
+.taskgraph__chip--active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+.taskgraph__node { transition: all var(--duration-fast); }
+.taskgraph__node:hover { filter: brightness(0.98); }
+.tone--queued { stroke:#D1D5DB; fill:#F9FAFB; }
+.tone--running { stroke:#3B82F6; fill:#EFF6FF; }
+.tone--completed { stroke:#10B981; fill:#ECFDF5; }
+.tone--failed { stroke:#EF4444; fill:#FEF2F2; }
+.tone--blocked { stroke:#F59E0B; fill:#FFFBEB; }
+.tone--waiting { stroke:#8B5CF6; fill:#F5F3FF; }
+circle.tone--queued { fill:#9CA3AF; stroke:none; }
+circle.tone--running { fill:#3B82F6; stroke:none; }
+circle.tone--completed { fill:#10B981; stroke:none; }
+circle.tone--failed { fill:#EF4444; stroke:none; }
+circle.tone--blocked { fill:#F59E0B; stroke:none; }
+.taskgraph__node--selected { stroke: var(--color-primary) !important; filter: drop-shadow(0 2px 8px rgba(0,102,204,0.15)); }
+.taskgraph__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

@@ -1,0 +1,52 @@
+/* Badge Component */
+/* Compact rectangle with mandatory text label, optional small neutral icon */
+/* Badge never stands alone as the only state signal */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: var(--leading-metadata);
+}
+
+.badge__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+}
+
+.badge__label {
+  white-space: nowrap;
+}
+
+/* Success - READY / COMPLETED */
+.badge--success {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+/* Warning - WORKING / WAITING_FOR_DEPENDENCY */
+.badge--warning {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+/* Danger - FAILED */
+.badge--danger {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+/* Neutral - QUEUED / WAITING / DORMANT / OFFLINE / CANCELLED */
+.badge--neutral {
+  background: var(--color-neutral-status-soft);
+  color: var(--color-neutral-status);
+}

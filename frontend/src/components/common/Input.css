@@ -1,0 +1,20 @@
+.input-group { display: flex; flex-direction: column; gap: var(--space-2); }
+.input__label { font-size: var(--font-size-label); font-weight: var(--font-weight-medium); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-body);
+  color: var(--text-primary);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+.input::placeholder { color: var(--text-tertiary); }
+.input:hover { border-color: var(--border-hover); }
+.input:focus { outline: none; border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(0,102,204,0.12); }
+.input--error { border-color: var(--border-error); }
+.input--error:focus { box-shadow: 0 0 0 3px rgba(220,38,38,0.12); }
+.input__error { font-size: 12px; color: var(--color-error); }
+.input__hint { font-size: 12px; color: var(--text-tertiary); }
+.input:disabled { background: var(--surface-disabled); color: var(--text-disabled); cursor: not-allowed; }

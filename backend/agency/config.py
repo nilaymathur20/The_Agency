@@ -1,10 +1,10 @@
-"""Configuration loader: config/*.yaml + env (.env) + per-role OpenRouter models. ChatDev-inspired."""
+"""Configuration loader: config/*.yaml + env (.env) + per-role OpenRouter models."""
 import os
 import yaml
 from pathlib import Path
 from typing import Any, Dict
 
-# Load .env first (like ChatDev's API config) — do not fail if missing
+# Load .env first (like Agency Chain's API config) — do not fail if missing
 try:
     from dotenv import load_dotenv
     # Search for .env at project root (parent of backend)
@@ -47,7 +47,7 @@ class AgencyConfig:
         self.tools = {}
         self.model_policies = {}
         self.agents = []
-        self.chat_chain = {}
+        self.agency_chain = {}
         self._load()
 
     def _load(self):
@@ -97,24 +97,27 @@ class AgencyConfig:
         agents_cfg = _load_yaml(self.config_dir / "agents.yaml")
         self.agents = agents_cfg.get("agents", [])
 
-        # chat_chain.yaml (ChatDev-inspired) — optional
-        cc = _load_yaml(self.config_dir / "chat_chain.yaml")
-        self.chat_chain = cc.get("chain", cc) if cc else {}
-        # Also support yaml_instance-style folder
-        yaml_instance = self.config_dir / "yaml_instance"
-        if yaml_instance.exists():
-            self.yaml_templates = list(yaml_instance.glob("*.yaml"))
+        # agency_chain.yaml (Agency Chain) — optional
+        cc = _load_yaml(self.config_dir / "agency_chain.yaml")
+        if not cc:
+            # legacy fallback
+            cc = _load_yaml(self.config_dir / "chat_chain.yaml")
+        self.agency_chain = cc.get("chain", cc) if cc else {}
+        # Also support workflow_templates-style folder
+        workflow_templates = self.config_dir / "workflow_templates"
+        if workflow_templates.exists():
+            self.yaml_templates = list(workflow_templates.glob("*.yaml"))
         else:
             self.yaml_templates = []
 
-        # ── Env overrides (ChatDev-style .env) ──
-        # OpenRouter as unified provider for ALL agents (ChatDev used OpenAI; we use OpenRouter)
+        # ── Env overrides (Collaborative Workflow .env) ──
+        # OpenRouter as unified provider for ALL agents (Agency Chain used OpenAI; we use OpenRouter)
         self.openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
         self.openrouter_base_url = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
         self.openrouter_referer = os.getenv("OPENROUTER_REFERER", "http://localhost:8000")
-        self.openrouter_title = os.getenv("OPENROUTER_TITLE", "AI Agency - ChatDev")
+        self.openrouter_title = os.getenv("OPENROUTER_TITLE", "AI Agency - Agency Chain")
 
-        # Per-role model mapping via env (like ChatDev's model assignment per agent)
+        # Per-role model mapping via env (like Agency Chain's model assignment per agent)
         # MODEL_CEO, MODEL_CTO, etc. — fallback to model_policies.yaml
         self.role_models: Dict[str, str] = {}
         for role in ["CEO","CTO","CPO","PROGRAMMER","REVIEWER","TESTER","DEFAULT"]:
@@ -134,9 +137,16 @@ class AgencyConfig:
         else:
             self.database_url = None
 
-        # ChatDev chain toggles
-        self.chatdev_max_turns = int(os.getenv("CHATDEV_MAX_TURNS", "8"))
-        self.chatdev_dehallucination = os.getenv("CHATDEV_DEHALLUCINATION", "true").lower() not in ("0","false","no")
+        # Workflow chain toggles (generic, with legacy compat)
+        _max_turns = os.getenv("WORKFLOW_MAX_TURNS") or os.getenv("AGENCY_CHAIN_MAX_TURNS") or "8"
+        self.workflow_max_turns = int(_max_turns)
+        # keep legacy aliases
+        self.agency_chain_max_turns = self.workflow_max_turns
+        # legacy alias
+        _clar = os.getenv("WORKFLOW_CLARIFICATION") or os.getenv("AGENCY_CHAIN_CLARIFICATION") or "true"
+        self.workflow_clarification = _clar.lower() not in ("0","false","no")
+        self.agency_chain_clarification = self.workflow_clarification
+        # legacy alias
 
         # Resolve workspace root
         ws_root = self.workspace.get("root", "./workspace/projects")
@@ -155,7 +165,7 @@ class AgencyConfig:
         return self.model_policies.get(name, self.model_policies.get("balanced", {}))
 
     def get_model_for_role(self, role: str) -> str | None:
-        """ChatDev-style: get OpenRouter model for a specific role (ceo/cto/programmer...)."""
+        """Collaborative Workflow: get OpenRouter model for a specific role (ceo/cto/programmer...)."""
         if not role:
             return None
         # direct role mapping

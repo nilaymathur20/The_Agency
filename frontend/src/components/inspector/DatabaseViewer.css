@@ -1,0 +1,11 @@
+.dbviewer { display: flex; flex-direction: column; gap: var(--space-4); }
+.dbviewer__header { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); }
+.dbviewer__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+.dbviewer__card { background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: var(--space-3); }
+.dbviewer__card-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); }
+.dbviewer__card-value { font-size: 13px; font-weight: 600; margin-top: 4px; word-break: break-all; }
+.dbviewer__section-title { font-size: 13px; font-weight: 600; margin-bottom: var(--space-3); }
+.dbviewer__chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.dbviewer__chip { font-size: 12px; background: var(--surface-base); border: 1px solid var(--border-default); padding: 4px 8px; border-radius: var(--radius-full); text-transform: capitalize; }
+.dbviewer__row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-divider); align-items: center; }
+.dbviewer__empty { padding: 24px; text-align: center; color: var(--text-tertiary); font-size: 13px; }

@@ -1,0 +1,19 @@
+/* Modern CSS Reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html, body { height: 100%; }
+body {
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  background: var(--surface-base);
+  color: var(--text-primary);
+  font-family: var(--font-family-system);
+  font-size: var(--font-size-body);
+}
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; }
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+#root { isolation: isolate; min-height: 100vh; }
+a { color: var(--text-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }

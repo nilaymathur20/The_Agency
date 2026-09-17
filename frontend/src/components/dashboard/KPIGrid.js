@@ -1,0 +1,6 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { KPICard } from './KPICard';
+import './KPIGrid.css';
+export function KPIGrid({ projects, activeAgents, totalAgents, queued, running, failed, completed, events, provider, isLoading }) {
+    return (_jsxs("div", { className: "kpi-grid", role: "region", "aria-label": "Key metrics", children: [_jsx(KPICard, { label: "Projects", value: projects, definition: "Total workspaces created. Each project is an isolated workspace with git history.", variant: "default", isLoading: isLoading, trend: { direction: 'up', percentage: 12, period: 'last week' } }), _jsx(KPICard, { label: "Active Agents", value: `${activeAgents} / ${totalAgents}`, definition: "201 logical agents sharing one runtime. 12 parallel max, auto-fallback on 429.", variant: running > 0 ? 'warning' : 'default', isLoading: isLoading }), _jsx(KPICard, { label: "Queued / Running", value: `${queued} / ${running}`, definition: "Tasks waiting vs executing. Blocked = deadlock/dependency.", variant: failed > 0 ? 'error' : queued > 5 ? 'warning' : 'default', isLoading: isLoading }), _jsx(KPICard, { label: "Completed", value: completed, definition: "Tasks completed across all projects. Recent events show live activity.", variant: "success", isLoading: isLoading, trend: { direction: 'up', percentage: 8, period: 'today' } })] }));
+}
