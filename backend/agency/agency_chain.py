@@ -190,6 +190,7 @@ def build_tasks_from_chain(project: Dict[str, Any], store=None, event_bus=None, 
     # Detect simple frontend-only projects and use simplified workflow
     is_simple_frontend = _detect_simple_frontend_project(project)
 
+    chain_data = get_chain()
     if is_simple_frontend:
         # Use simplified single-task workflow for simple HTML/CSS/JS projects
         phases = [
@@ -206,7 +207,6 @@ def build_tasks_from_chain(project: Dict[str, Any], store=None, event_bus=None, 
         events.emit(project_id, "pm.simple_workflow_detected", {"project": project.get("name"), "reason": "Single-file HTML/CSS/JS project detected"})
     else:
         # Try to load chain
-        chain_data = get_chain()
         phases = chain_data.get("phases") if isinstance(chain_data, dict) else None
         if not phases:
             phases = DEFAULT_PHASES
