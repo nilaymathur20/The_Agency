@@ -411,7 +411,7 @@ function formatEventTitle(type: string, payload: any): string {
 }
 
 export default function App() {
-  const [appMode, setAppMode] = useState<'operations' | 'runtime'>('operations');
+  const [appMode, setAppMode] = useState<'operations' | 'runtime'>('runtime');
 
   return (
     <NotificationProvider>

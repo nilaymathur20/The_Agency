@@ -143,6 +143,34 @@ def _map_instructor_assistant_to_role(instructor: str, assistant: str) -> str:
     }
     return mapping.get((assistant or instructor or "").lower(), assistant or instructor or "backend_developer")
 
+def _detect_simple_frontend_project(project: Dict[str, Any]) -> bool:
+    """Detect if project is a simple single-file HTML/CSS/JS app (like tic-tac-toe)"""
+    description = (project.get("description", "") + " " + project.get("requirements", "")).lower()
+    name = project.get("name", "").lower()
+
+    # Keywords indicating simple frontend-only projects
+    simple_indicators = [
+        "html", "css", "js", "javascript", "single file", "single-file",
+        "tic-tac-toe", "tic tac toe", "calculator", "todo list", "clock",
+        "game", "simple", "basic", "vanilla js", "vanilla javascript",
+        "static", "client-side", "frontend only"
+    ]
+
+    # Keywords indicating complex fullstack projects
+    complex_indicators = [
+        "api", "backend", "database", "server", "fastapi", "flask", "django",
+        "react", "vue", "angular", "fullstack", "full-stack", "auth", "login"
+    ]
+
+    text = description + " " + name
+    has_simple = any(kw in text for kw in simple_indicators)
+    has_complex = any(kw in text for kw in complex_indicators)
+
+    # If explicitly mentions HTML/CSS/JS without backend keywords, treat as simple
+    html_js_mentioned = ("html" in text or "javascript" in text or "js " in text or " js" in text)
+
+    return (has_simple and not has_complex) or (html_js_mentioned and not has_complex)
+
 def build_tasks_from_chain(project: Dict[str, Any], store=None, event_bus=None, workspace_manager=None, use_agency_chain: bool = True, use_workflow: bool = None, use_chat_chain: bool = None, **kwargs) -> List[Dict[str, Any]]:
     """
     Collaborative Workflow task generation: each phase becomes one or more tasks with Instructor→Assistant metadata.
@@ -159,14 +187,32 @@ def build_tasks_from_chain(project: Dict[str, Any], store=None, event_bus=None, 
     wm = workspace_manager or get_workspace_manager()
     project_id = project["id"]
 
-    # Try to load chain
-    chain_data = get_chain()
-    phases = chain_data.get("phases") if isinstance(chain_data, dict) else None
-    if not phases:
-        phases = DEFAULT_PHASES
-    # chain_data may have top-level phases list
-    if isinstance(phases, dict):
-        phases = list(phases.values())
+    # Detect simple frontend-only projects and use simplified workflow
+    is_simple_frontend = _detect_simple_frontend_project(project)
+
+    if is_simple_frontend:
+        # Use simplified single-task workflow for simple HTML/CSS/JS projects
+        phases = [
+            {
+                "id": "simple_implementation",
+                "name": "Implementation",
+                "instructor": "cto",
+                "assistant": "programmer",
+                "instruction": f"Create {project.get('name', 'the application')} as requested. Implement in a single HTML file with embedded CSS and JavaScript. Include all game logic, styling, and interactivity in one file (index.html). Test the implementation by opening the file in a browser.",
+                "deps": [],
+                "role": "frontend_developer",
+            }
+        ]
+        events.emit(project_id, "pm.simple_workflow_detected", {"project": project.get("name"), "reason": "Single-file HTML/CSS/JS project detected"})
+    else:
+        # Try to load chain
+        chain_data = get_chain()
+        phases = chain_data.get("phases") if isinstance(chain_data, dict) else None
+        if not phases:
+            phases = DEFAULT_PHASES
+        # chain_data may have top-level phases list
+        if isinstance(phases, dict):
+            phases = list(phases.values())
 
     # Normalize phases: ensure each has deps and role
     # Build id → phase map

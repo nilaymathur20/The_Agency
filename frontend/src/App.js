@@ -15,6 +15,7 @@ import { TaskDetail } from './components/inspector/TaskDetail';
 import { Button } from './components/common/Button';
 import { Input } from './components/common/Input';
 import { Modal } from './components/common/Modal';
+import { OperationsApp } from './patterns/OperationsApp';
 import { api } from './services/api';
 import { useEventStream } from './hooks/useEventStream';
 import './styles/design-tokens.css';
@@ -281,5 +282,24 @@ function formatEventTitle(type, payload) {
     return type;
 }
 export default function App() {
-    return (_jsx(NotificationProvider, { children: _jsx(DashboardProvider, { children: _jsx(DashboardInner, {}) }) }));
+    const [appMode, setAppMode] = useState('operations');
+    return (_jsx(NotificationProvider, { children: _jsxs(DashboardProvider, { children: [_jsxs("div", { style: { position: 'sticky', top: 0, zIndex: 1000, background: '#1F2933', padding: '6px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #323F4B' }, children: [_jsx("div", { style: { display: 'flex', alignItems: 'center', gap: 8, color: '#F5F7FA', fontSize: 13, fontWeight: 600 }, children: _jsx("span", { children: "AI Agency Console" }) }), _jsxs("div", { style: { display: 'flex', gap: 6 }, children: [_jsx("button", { onClick: () => setAppMode('operations'), style: {
+                                        padding: '4px 12px',
+                                        fontSize: 12,
+                                        fontWeight: 600,
+                                        borderRadius: 4,
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        background: appMode === 'operations' ? '#174A73' : '#323F4B',
+                                        color: '#FFFFFF'
+                                    }, children: "Operations Console" }), _jsx("button", { onClick: () => setAppMode('runtime'), style: {
+                                        padding: '4px 12px',
+                                        fontSize: 12,
+                                        fontWeight: 600,
+                                        borderRadius: 4,
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        background: appMode === 'runtime' ? '#174A73' : '#323F4B',
+                                        color: '#FFFFFF'
+                                    }, children: "Live Runtime Engine" })] })] }), appMode === 'operations' ? _jsx(OperationsApp, {}) : _jsx(DashboardInner, {})] }) }));
 }

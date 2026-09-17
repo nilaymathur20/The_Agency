@@ -19,7 +19,8 @@ class Store:
         self._init_db()
 
     def _connect(self):
-        conn = sqlite3.connect(str(self.db_path), check_same_thread=False)
+        conn = sqlite3.connect(str(self.db_path), check_same_thread=False, timeout=30.0)
+        conn.execute("PRAGMA journal_mode=WAL")
         conn.row_factory = sqlite3.Row
         return conn
 

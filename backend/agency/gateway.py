@@ -16,6 +16,7 @@ from .tools import terminal as term_tools
 from .tools import database as db_tools
 from .tools import git as git_tools
 from .tools import docker as docker_tools
+from .tools import webscraper as web_tools
 
 class ToolGateway:
     def __init__(self, store=None, config=None, event_bus=None, workspace_manager=None):
@@ -184,6 +185,8 @@ class ToolGateway:
             "git_branch": [],
             "git_checkout": ["ref"],
             "git_checkpoint": [],
+            "fetch_url": ["url"],
+            "search_web": ["query"],
         }
         if tool not in required_map:
             return {"valid": False, "error": f"Unknown tool: {tool}"}
@@ -242,6 +245,10 @@ class ToolGateway:
             return git_tools.git_checkout(ws_root, args["ref"])
         elif tool == "git_checkpoint":
             return git_tools.git_checkpoint(ws_root, args.get("description","checkpoint"))
+        elif tool == "fetch_url":
+            return web_tools.fetch_url(ws_root, args["url"], args.get("extract_type", "text"), timeout=args.get("timeout", 30))
+        elif tool == "search_web":
+            return web_tools.search_web(ws_root, args["query"], args.get("num_results", 5))
         else:
             return {"success": False, "error": f"Unknown tool {tool}", "error_category": VALIDATION_ERROR}
 

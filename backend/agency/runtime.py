@@ -19,8 +19,9 @@ from .tools.terminal import TOOL_SCHEMAS as TERM_SCHEMAS
 from .tools.database import TOOL_SCHEMAS as DB_SCHEMAS
 from .tools.git import TOOL_SCHEMAS as GIT_SCHEMAS
 from .tools.docker import TOOL_SCHEMAS as DOCKER_SCHEMAS
+from .tools.webscraper import TOOL_SCHEMAS as WEB_SCHEMAS
 
-ALL_TOOL_SCHEMAS = FS_SCHEMAS + TERM_SCHEMAS + DB_SCHEMAS + GIT_SCHEMAS + DOCKER_SCHEMAS
+ALL_TOOL_SCHEMAS = FS_SCHEMAS + TERM_SCHEMAS + DB_SCHEMAS + GIT_SCHEMAS + DOCKER_SCHEMAS + WEB_SCHEMAS
 
 # Workflow prompt: Instructor instructs, Assistant responds via tools
 BASE_PROMPT = """You are a specialist software-engineering agent operating inside an AI Agency (Collaborative Workflow).
