@@ -58,6 +58,13 @@ Required tools:
 - `git_log`
 - optional `git_push`
 
+### Web & Research
+
+Required tools:
+
+- `fetch_url` (extract HTML, Markdown, links, text)
+- `search_web` (DuckDuckGo search parser for online references)
+
 ## Tool Gateway
 
 Agents never directly invoke operating-system capabilities.

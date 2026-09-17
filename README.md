@@ -102,6 +102,7 @@ backend/agency/
     git.py          → status/diff/commit/checkpoint/branch/log
     database.py     → create_database (SQLite), execute_sql, migrations
     docker.py       → build/run via CLI (approval-gated)
+    webscraper.py   → fetch_url (HTML/MD/text) / search_web (DuckDuckGo parser)
   gateway.py        → Tool Gateway (validation → audit)
   llm/
     openrouter.py   → OpenRouter adapter (httpx)

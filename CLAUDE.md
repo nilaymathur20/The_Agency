@@ -55,7 +55,7 @@ User → API (app.py) → PM (pm.py) → Task Graph → Orchestrator → Agent R
 
 ### Core pipeline
 
-1. **PM** (`pm.py`) decomposes a project into a DAG of tasks. Dual mode: Agency Chain (default, from `config/agency_chain.yaml`) or classic waterfall. Set `USE_WORKFLOW=false` in `.env` for classic.
+1. **PM** (`pm.py`) decomposes a project into a DAG of tasks. Dual mode: Agency Chain (default, from `config/agency_chain.yaml`) or classic waterfall. Set `USE_WORKFLOW=false` in `.env` for classic. Includes **Adaptive Workflow** to automatically detect single-file HTML/CSS/JS projects and generate streamlined tasks.
 2. **Orchestrator** (`orchestrator.py`) schedules tasks respecting dependencies, runs them in parallel via `ThreadPoolExecutor` (max 12 concurrent), handles retries (×3), deadlock detection, pause/cancel.
 3. **Agent Runtime** (`runtime.py`) is the single execution loop shared by all 201 logical agents. Each task gets: prompt construction → LLM call → tool calls → audit → completion report. Supports Instructor→Assistant roles per phase with optional communicative dehallucination (`CHATDEV_DEHALLUCINATION=true`).
 4. **Tool Gateway** (`gateway.py`) is the mandatory boundary for every tool call: schema validation → permission check → workspace path validation → command policy classification → audit logging. Never bypass this.
